@@ -4,7 +4,7 @@
   "version": "1.1.0",
   "description": "MVISION Insights APIs provide intelligence about Campaigns, associated IOCs and Events. They also provide classification information on file-hashes. This connector facilitates the automated operations related to Campaigns, Events, or IOCs.",
   "publisher": "Community",
-  "cs_approved": true,
+  "cs_approved": false,
   "cs_compatible": true,
   "category": "Threat Intelligence",
   "icon_small_name": "small.png",
