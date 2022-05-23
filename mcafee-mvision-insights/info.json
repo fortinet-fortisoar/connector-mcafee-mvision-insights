@@ -1,1393 +1,1480 @@
 {
-    "name":"mcafee-mvision-insights",
-    "version":"1.1.0",
-    "label":"McAfee Mvision Insights",
-    "description":"MVISION Insights APIs provide intelligence about Campaigns, associated IOCs and Events. They also provide classification information on file-hashes. This connector facilitates the automated operations related to Campaigns, Events, or IOCs.",
-    "publisher":"Community",
-    "icon_small_name":"small.png",
-    "icon_large_name":"large.png",
-    "category":"threat_intelligence",
-    "configuration":{
-       "fields":[
+  "name": "mcafee-mvision-insights",
+  "label": "McAfee Mvision Insights",
+  "version": "1.1.0",
+  "description": "MVISION Insights APIs provide intelligence about Campaigns, associated IOCs and Events. They also provide classification information on file-hashes. This connector facilitates the automated operations related to Campaigns, Events, or IOCs.",
+  "publisher": "Community",
+  "cs_approved": true,
+  "cs_compatible": true,
+  "category": "Threat Intelligence",
+  "icon_small_name": "small.png",
+  "icon_large_name": "large.png",
+  "help_online": "",
+  "configuration": {
+    "fields": [
+      {
+        "title": "Server URL",
+        "description": "The URL of the McAfee Mvision Insights server to which you will connect and perform automated operations.",
+        "type": "text",
+        "name": "server_url",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "value": "https://api.mvision.mcafee.com"
+      },
+      {
+        "title": "Client ID",
+        "description": "The Client ID used to access the McAfee Mvision Insights server to which you will connect and perform the automated operations.",
+        "type": "text",
+        "name": "client_id",
+        "required": false,
+        "editable": true,
+        "visible": true
+      },
+      {
+        "title": "Client Secret",
+        "description": "The Client Secret used to access the McAfee Mvision Insights server to which you will connect and perform the automated operations.",
+        "type": "password",
+        "name": "client_secret",
+        "required": false,
+        "editable": true,
+        "visible": true
+      },
+      {
+        "title": "API Key",
+        "description": "The API Key used to access the McAfee Mvision Insights endpoint to which you will connect and perform the automated operations.",
+        "type": "password",
+        "name": "api_key",
+        "required": false,
+        "editable": true,
+        "visible": true
+      },
+      {
+        "title": "Verify SSL",
+        "description": "Specifies whether the SSL certificate for the server is to be verified or not.",
+        "name": "verify_ssl",
+        "type": "checkbox",
+        "required": false,
+        "editable": true,
+        "visible": true,
+        "value": true
+      }
+    ]
+  },
+  "operations": [
+    {
+      "operation": "get_ioc_list",
+      "title": "Get All IOC List",
+      "description": "Retrieves a list of all IOCs or specific IOCs from McAfee Mvision Insight based on the input parameters you have specified.",
+      "enabled": true,
+      "category": "investigation",
+      "annotation": "get_ioc_list",
+      "parameters": [
+        {
+          "title": "Offset",
+          "name": "offset",
+          "description": "Index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records, say incidents starting from the 10th IOC. By default, this is set as 0.",
+          "value": 0,
+          "type": "integer",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records, say incidents starting from the 10th IOC. By default, this is set as 0."
+        },
+        {
+          "title": "Limit",
+          "description": "The maximum number of results, per page, that this operation should return.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "integer",
+          "value": 10,
+          "name": "limit",
+          "tooltip": "The maximum number of results, per page, that this operation should return."
+        },
+        {
+          "title": "Campaign ID",
+          "name": "id",
+          "description": "The ID of the campaign whose associated IOCs you want to retrieve from McAfee Mvision Insight.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false
+        },
+        {
+          "title": "IOC Type",
+          "name": "type",
+          "description": "The type of IOC you want to retrieve from McAfee Mvision Insight.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false
+        },
+        {
+          "title": "Fields",
+          "name": "fields",
+          "description": "Select or specify the fields that you want to be included in the response. This limits the contents of the response to fields that you have specified. You can select or specify fields such as Type, Value, Coverage, etc",
+          "type": "select",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "options": [
+            "ID",
+            "Type",
+            "Value",
+            "Coverage",
+            "UID",
+            "Is Coat",
+            "Is SDB Dirty"
+          ],
+          "tooltip": "Select or specify the fields that you want to be included in the response. This limits the contents of the response to fields that you have specified. You can select or specify fields such as Type, Value, Coverage, etc"
+        }
+      ],
+      "output_schema": {
+        "links": {
+          "self": "",
+          "first": "",
+          "last": "",
+          "prev": "",
+          "next": ""
+        },
+        "data": [
           {
-             "title":"MVISION Server URL",
-             "type":"text",
-             "name":"server_url",
-             "required":true,
-             "visible":true,
-             "editable":true,
-             "value":"https://api.mvision.mcafee.com"
-          },
-          {
-             "title":"Client ID",
-             "type":"text",
-             "name":"client_id",
-             "required":false,
-             "visible":true,
-             "editable":true
-          },
-          {
-             "title":"Client Secret",
-             "type":"password",
-             "name":"client_secret",
-             "required":false,
-             "visible":true,
-             "editable":true
-          },
-          {
-             "title":"API Key",
-             "type":"password",
-             "name":"api_key",
-             "required":false,
-             "visible":true,
-             "editable":true
-          },
-          {
-             "title":"Verify SSL",
-             "type":"checkbox",
-             "name":"verify_ssl",
-             "required":false,
-             "visible":true,
-             "editable":true,
-             "value":true
+            "type": "",
+            "id": "",
+            "links": {
+              "self": ""
+            },
+            "attributes": {
+              "type": "",
+              "value": "",
+              "coverage": "",
+              "uid": "",
+              "is-coat": "",
+              "is-sdb-dirty": "",
+              "category": "",
+              "comment": "",
+              "lethality": "",
+              "determinism": "",
+              "created-on": ""
+            },
+            "relationships": {
+              "campaigns": {
+                "links": {
+                  "self": "",
+                  "related": ""
+                }
+              }
+            }
           }
-       ]
+        ]
+      }
     },
-    "operations":[
-       {
-          "operation":"get_ioc_list",
-          "title":"Get All IOC List",
-          "description":"Retrieves a list of all IOCs or specific IOCs from McAfee Mvision Insight based on the input parameters you have specified.",
-          "enabled":true,
-          "category":"investigation",
-          "annotation":"get_ioc_list",
-          "parameters":[
-             {
-                "title":"Offset",
-                "type":"integer",
-                "name":"offset",
-                "required":false,
-                "visible":true,
-                "editable":true,
-                "value":0
-             },
-             {
-                "title":"Limit",
-                "type":"integer",
-                "name":"limit",
-                "required":false,
-                "visible":true,
-                "editable":true,
-                "value":10
-             },
-             {
-                "title":"Campaign ID",
-                "type":"text",
-                "name":"id",
-                "required":false,
-                "visible":true,
-                "editable":true
-             },
-             {
-                "title":"IOC Type",
-                "type":"text",
-                "name":"type",
-                "required":false,
-                "visible":true,
-                "editable":true
-             },
-             {
-                "title":"Fields",
-                "type":"select",
-                "name":"fields",
-                "required":false,
-                "visible":true,
-                "editable":true,
-                "options":[
-                   "ID",
-                   "Type",
-                   "Value",
-                   "Coverage",
-                   "UID",
-                   "Is Coat",
-                   "Is SDB Dirty"
-                ]
-             }
+    {
+      "operation": "get_ioc_details",
+      "title": "Get IOC Details",
+      "description": "Retrieves information about a specific IOC from McAfee Mvision Insights based on the IOC ID you have specified.",
+      "enabled": true,
+      "category": "investigation",
+      "annotation": "get_ioc_details",
+      "parameters": [
+        {
+          "title": "IOC ID",
+          "description": "The ID of the IOC whose details you want to retrieve from McAfee Mvision Insights.",
+          "type": "text",
+          "name": "id",
+          "required": true,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Fields",
+          "name": "fields",
+          "description": "Select or specify the fields that you want to be included in the response. This limits the contents of the response to fields that you have specified. You can select or specify fields such as Type, Value, Coverage, etc",
+          "type": "select",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "options": [
+            "ID",
+            "Type",
+            "Value",
+            "Coverage",
+            "UID",
+            "Is Coat",
+            "Is SDB Dirty"
           ],
-          "output_schema":{
-             "links":{
-                "self":"",
-                "first":"",
-                "last":"",
-                "prev":"",
-                "next":""
-             },
-             "data":[
+          "tooltip": "Select or specify the fields that you want to be included in the response. This limits the contents of the response to fields that you have specified. You can select or specify fields such as Type, Value, Coverage, etc"
+        }
+      ],
+      "output_schema": {
+        "links": {
+          "self": ""
+        },
+        "data": {
+          "type": "",
+          "id": "",
+          "links": {
+            "self": ""
+          },
+          "attributes": {
+            "type": "",
+            "value": "",
+            "coverage": "",
+            "uid": "",
+            "is-coat": "",
+            "is-sdb-dirty": "",
+            "category": "",
+            "comment": "",
+            "lethality": "",
+            "determinism": "",
+            "created-on": ""
+          },
+          "relationships": {
+            "campaigns": {
+              "links": {
+                "self": "",
+                "related": ""
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "operation": "get_ioc_campaigns",
+      "title": "Get IOC Campaigns",
+      "description": "Retrieves a list of all campaigns for a specific IOC from McAfee Mvision Insights based on the IOC ID you have specified.",
+      "enabled": true,
+      "category": "investigation",
+      "annotation": "get_ioc_campaigns",
+      "parameters": [
+        {
+          "title": "IOC ID",
+          "description": "The ID of the IOC whose associated list of campaigns you want to retrieve from McAfee Mvision Insights.",
+          "type": "text",
+          "name": "id",
+          "required": true,
+          "editable": true,
+          "visible": true
+        }
+      ],
+      "output_schema": {
+        "links": {
+          "self": "",
+          "first": "",
+          "last": "",
+          "prev": "",
+          "next": ""
+        },
+        "data": [
+          {
+            "type": "",
+            "id": "",
+            "links": {
+              "self": ""
+            },
+            "attributes": {
+              "name": "",
+              "description": "",
+              "threat-level-id": "",
+              "kb-article-link": "",
+              "coverage": "",
+              "updated-on": "",
+              "external-analysis": {
+                "links": []
+              },
+              "is-coat": "",
+              "created-on": ""
+            },
+            "relationships": {
+              "iocs": {
+                "links": {
+                  "self": "",
+                  "related": ""
+                }
+              },
+              "galaxies": {
+                "links": {
+                  "self": "",
+                  "related": ""
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "operation": "get_ioc_relationship_campaigns",
+      "title": "Get IOC Relationship Campaigns",
+      "description": "Retrieves all the details for all the IOCs that are associated with a specific campaign from McAfee Mvision Insights based on the Campaign ID you have specified.",
+      "enabled": true,
+      "category": "investigation",
+      "annotation": "get_ioc_relationship_campaigns",
+      "parameters": [
+        {
+          "title": "IOC ID",
+          "description": "The ID of the IOC whose associated campaigns list you want to retrieve from McAfee Mvision Insights.",
+          "type": "text",
+          "name": "id",
+          "required": true,
+          "editable": true,
+          "visible": true
+        }
+      ],
+      "output_schema": {
+        "links": {
+          "self": "",
+          "first": "",
+          "last": "",
+          "prev": "",
+          "next": "",
+          "related": ""
+        },
+        "data": [
+          {
+            "type": "",
+            "id": ""
+          }
+        ]
+      }
+    },
+    {
+      "operation": "get_artefacts",
+      "title": "Get Artefacts",
+      "description": "Retrieves information about a specific artifact from McAfee Mvision Insights based on the hash type and hash value you have specified.",
+      "enabled": true,
+      "category": "investigation",
+      "annotation": "get_artefacts",
+      "parameters": [
+        {
+          "title": "Hash Type",
+          "description": "The hash type of the artifact whose information you want to retrieve from the McAfee Mvision Insights.",
+          "type": "text",
+          "name": "hashtype",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "tooltip": "Hash Type should be md5, sha256."
+        },
+        {
+          "title": "Hash Value",
+          "description": "The hash value of the artifact whose information you want to retrieve from the McAfee Mvision Insights.",
+          "type": "text",
+          "name": "hashvalue",
+          "required": true,
+          "editable": true,
+          "visible": true
+        }
+      ],
+      "output_schema": {
+        "links": {
+          "self": ""
+        },
+        "data": {
+          "type": "",
+          "id": "",
+          "attributes": {
+            "id": "",
+            "md5": "",
+            "sha1": "",
+            "sha256": "",
+            "classification-name": "",
+            "classification-type": "",
+            "file-size": "",
+            "first-seen": ""
+          }
+        }
+      }
+    },
+    {
+      "operation": "get_campaigns_list",
+      "title": "Get All Campaigns List",
+      "description": "Retrieves a list of all campaigns or specific campaigns from McAfee Mvision Insight based on the input parameters you have specified.",
+      "enabled": true,
+      "category": "investigation",
+      "annotation": "get_campaigns_list",
+      "parameters": [
+        {
+          "title": "Offset",
+          "name": "offset",
+          "description": "Index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records, say incidents starting from the 10th campaign. By default, this is set as 0.",
+          "value": 0,
+          "type": "integer",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records, say incidents starting from the 10th campaign. By default, this is set as 0."
+        },
+        {
+          "title": "Limit",
+          "description": "The maximum number of results, per page, that this operation should return.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "integer",
+          "value": 10,
+          "name": "limit",
+          "tooltip": "The maximum number of results, per page, that this operation should return."
+        },
+        {
+          "title": "Filter By",
+          "name": "filter_by",
+          "description": "Select the operator, Like or Exact, using which you want to filter the results returned by this operation, based on the name of the campaign. ",
+          "type": "select",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "options": [
+            "Like",
+            "Exact"
+          ],
+          "tooltip": "This filter will be applied on Campaign Name."
+        },
+        {
+          "title": "Campaign Name",
+          "name": "campaign_name",
+          "description": "Specify the name of the campaign based on which you want to filter the campaigns returned by this operation.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the name of the campaign based on which you want to filter the campaigns returned by this operation."
+        },
+        {
+          "title": "Sector",
+          "name": "sector",
+          "description": "Specify the sector based on which you want to filter the campaigns returned by this operation.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "e.g Software",
+          "tooltip": "Specify the sector based on which you want to filter the campaigns returned by this operation."
+        },
+        {
+          "title": "Include",
+          "description": " Select Prevalence from this field to include country and sector-based prevalence in terms of devices impacted per million for each campaign object in the response.",
+          "type": "select",
+          "name": "include",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "tooltip": " Select Prevalence from this field to include country and sector-based prevalence in terms of devices impacted per million for each campaign object in the response.",
+          "options": [
+            "Prevalence"
+          ]
+        },
+        {
+          "title": "Fields",
+          "name": "fields",
+          "description": "Select or specify the fields that you want to be included in the response. This limits the contents of the response to fields that you have specified. You can select or specify fields such as Name, Threat Level ID, Description, etc",
+          "type": "select",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "options": [
+            "ID",
+            "Name",
+            "Threat Level ID",
+            "Description",
+            "KB Article Link",
+            "Coverage",
+            "Prevalence",
+            "External Analysis",
+            "Is Coat"
+          ],
+          "tooltip": "Select or specify the fields that you want to be included in the response. This limits the contents of the response to fields that you have specified. You can select or specify fields such as Name, Threat Level ID, Description, etc"
+        }
+      ],
+      "output_schema": {
+        "links": {
+          "self": "",
+          "first": "",
+          "last": "",
+          "prev": "",
+          "next": ""
+        },
+        "data": [
+          {
+            "type": "",
+            "id": "",
+            "links": {
+              "self": ""
+            },
+            "attributes": {
+              "name": "",
+              "description": "",
+              "threat-level-id": "",
+              "kb-article-link": "",
+              "coverage": {
+                "dat_version": {
+                  "min": ""
+                }
+              },
+              "updated-on": "",
+              "external-analysis": {
+                "links": [
+                ]
+              },
+              "is-coat": "",
+              "created-on": "",
+              "prevalence": {
+                "nodes": "",
+                "events": "",
+                "sectors": [
+                  {
+                    "sector": "",
+                    "affected": "",
+                    "events": "",
+                    "total": ""
+                  }
+                ],
+                "countries": [
+                  {
+                    "iso_code": "",
+                    "affected": "",
+                    "events": "",
+                    "total": ""
+                  }
+                ],
+                "countriesTotalDevices": ""
+              }
+            },
+            "relationships": {
+              "iocs": {
+                "links": {
+                  "self": "",
+                  "related": ""
+                }
+              },
+              "galaxies": {
+                "links": {
+                  "self": "",
+                  "related": ""
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "operation": "get_campaign_details",
+      "title": "Get Campaign Details",
+      "description": "Retrieves information about a specific campaign from McAfee Mvision Insights based on the Campaign ID you have specified.",
+      "enabled": true,
+      "category": "investigation",
+      "annotation": "get_campaign_details",
+      "parameters": [
+        {
+          "title": "Campaign ID",
+          "description": "The ID of the campaign whose details you want to retrieve from McAfee Mvision Insights.",
+          "type": "text",
+          "name": "id",
+          "required": true,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Include",
+          "description": "Select Prevalence from this field to include country and sector-based prevalence in terms of devices impacted per million for each campaign object in the response.",
+          "type": "select",
+          "name": "include",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "tooltip": "Select Prevalence from this field to include country and sector-based prevalence in terms of devices impacted per million for each campaign object in the response.",
+          "options": [
+            "Prevalence"
+          ]
+        },
+        {
+          "title": "Fields",
+          "name": "fields",
+          "description": "Select or specify the fields that you want to be included in the response. This limits the contents of the response to fields that you have specified. You can select or specify fields such as Name, Threat Level ID, Description, etc",
+          "type": "select",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "options": [
+            "ID",
+            "Name",
+            "Threat Level ID",
+            "Description",
+            "KB Article Link",
+            "Coverage",
+            "Prevalence",
+            "External Analysis",
+            "Is Coat"
+          ],
+          "tooltip": "Select or specify the fields that you want to be included in the response. This limits the contents of the response to fields that you have specified. You can select or specify fields such as Name, Threat Level ID, Description, etc"
+        }
+      ],
+      "output_schema": {
+        "links": {
+          "self": ""
+        },
+        "data": {
+          "type": "",
+          "id": "",
+          "links": {
+            "self": ""
+          },
+          "attributes": {
+            "name": "",
+            "description": "",
+            "threat-level-id": "",
+            "kb-article-link": "",
+            "coverage": {
+              "dat_version": {
+                "min": ""
+              }
+            },
+            "updated-on": "",
+            "external-analysis": {
+              "links": [
+              ]
+            },
+            "is-coat": "",
+            "created-on": "",
+            "prevalence": {
+              "nodes": "",
+              "events": "",
+              "sectors": [
                 {
-                   "type":"",
-                   "id":"",
-                   "links":{
-                      "self":""
-                   },
-                   "attributes":{
-                      "type":"",
-                      "value":"",
-                      "coverage":"",
-                      "uid":"",
-                      "is-coat":"",
-                      "is-sdb-dirty":"",
-                      "category":"",
-                      "comment":"",
-                      "lethality":"",
-                      "determinism":"",
-                      "created-on":""
-                   },
-                   "relationships":{
-                      "campaigns":{
-                         "links":{
-                            "self":"",
-                            "related":""
-                         }
-                      }
-                   }
+                  "sector": "",
+                  "affected": "",
+                  "events": "",
+                  "total": ""
                 }
-             ]
-          }
-       },
-       {
-          "operation":"get_ioc_details",
-          "title":"Get IOC Details",
-          "description":"Retrieves information about a specific IOC from McAfee Mvision Insights based on the IOC ID you have specified.",
-          "enabled":true,
-          "category":"investigation",
-          "annotation":"get_ioc_details",
-          "parameters":[
-             {
-                "title":"IOC ID",
-                "type":"text",
-                "name":"id",
-                "required":true,
-                "visible":true,
-                "editable":true
-             },
-             {
-                "title":"Fields",
-                "type":"select",
-                "name":"fields",
-                "required":false,
-                "visible":true,
-                "editable":true,
-                "options":[
-                   "ID",
-                   "Type",
-                   "Value",
-                   "Coverage",
-                   "UID",
-                   "Is Coat",
-                   "Is SDB Dirty"
-                ]
-             }
-          ],
-          "output_schema":{
-             "links":{
-                "self":""
-             },
-             "data":{
-                "type":"",
-                "id":"",
-                "links":{
-                   "self":""
-                },
-                "attributes":{
-                   "type":"",
-                   "value":"",
-                   "coverage":"",
-                   "uid":"",
-                   "is-coat":"",
-                   "is-sdb-dirty":"",
-                   "category":"",
-                   "comment":"",
-                   "lethality":"",
-                   "determinism":"",
-                   "created-on":""
-                },
-                "relationships":{
-                   "campaigns":{
-                      "links":{
-                         "self":"",
-                         "related":""
-                      }
-                   }
-                }
-             }
-          }
-       },
-       {
-          "operation":"get_ioc_campaigns",
-          "title":"Get IOC Campaigns",
-          "description":"Retrieves a list of all campaigns for a specific IOC from McAfee Mvision Insights based on the IOC ID you have specified.",
-          "enabled":true,
-          "category":"investigation",
-          "annotation":"get_ioc_campaigns",
-          "parameters":[
-             {
-                "title":"IOC ID",
-                "type":"text",
-                "name":"id",
-                "required":true,
-                "visible":true,
-                "editable":true
-             }
-          ],
-          "output_schema":{
-             "links":{
-                "self":"",
-                "first":"",
-                "last":"",
-                "prev":"",
-                "next":""
-             },
-             "data":[
+              ],
+              "countries": [
                 {
-                   "type":"",
-                   "id":"",
-                   "links":{
-                      "self":""
-                   },
-                   "attributes":{
-                      "name":"",
-                      "description":"",
-                      "threat-level-id":"",
-                      "kb-article-link":"",
-                      "coverage":"",
-                      "updated-on":"",
-                      "external-analysis":{
-                         "links":[
-                            
-                         ]
-                      },
-                      "is-coat":"",
-                      "created-on":""
-                   },
-                   "relationships":{
-                      "iocs":{
-                         "links":{
-                            "self":"",
-                            "related":""
-                         }
-                      },
-                      "galaxies":{
-                         "links":{
-                            "self":"",
-                            "related":""
-                         }
-                      }
-                   }
+                  "iso_code": "",
+                  "affected": "",
+                  "events": "",
+                  "total": ""
                 }
-             ]
+              ],
+              "countriesTotalDevices": ""
+            }
+          },
+          "relationships": {
+            "iocs": {
+              "links": {
+                "self": "",
+                "related": ""
+              }
+            },
+            "galaxies": {
+              "links": {
+                "self": "",
+                "related": ""
+              }
+            }
           }
-       },
-       {
-          "operation":"get_ioc_relationship_campaigns",
-          "title":"Get IOC Relationship Campaigns",
-          "description":"Retrieves all the details for all the IOCs that are associated with a specific campaign from McAfee Mvision Insights based on the Campaign ID you have specified.",
-          "enabled":true,
-          "category":"investigation",
-          "annotation":"get_ioc_relationship_campaigns",
-          "parameters":[
-             {
-                "title":"IOC ID",
-                "type":"text",
-                "name":"id",
-                "required":true,
-                "visible":true,
-                "editable":true
-             }
+        }
+      }
+    },
+    {
+      "operation": "get_campaign_iocs",
+      "title": "Get Campaign IOCs",
+      "description": "Retrieves IOCs information associated with a specific campaign from McAfee Mvision Insights based on the Campaign ID you have specified.",
+      "enabled": true,
+      "category": "investigation",
+      "annotation": "get_campaign_iocs",
+      "parameters": [
+        {
+          "title": "Campaign ID",
+          "description": "The ID of the campaign whose associated IOC details you want to retrieve from McAfee Mvision Insights.",
+          "type": "text",
+          "name": "id",
+          "required": true,
+          "editable": true,
+          "visible": true
+        }
+      ],
+      "output_schema": {
+        "links": {
+          "self": "",
+          "first": "",
+          "last": "",
+          "prev": "",
+          "next": ""
+        },
+        "data": [
+          {
+            "type": "",
+            "id": "",
+            "links": {
+              "self": ""
+            },
+            "attributes": {
+              "type": "",
+              "value": "",
+              "coverage": {
+                "dat_version": {
+                  "min": ""
+                }
+              },
+              "uid": "",
+              "is-coat": "",
+              "is-sdb-dirty": "",
+              "category": "",
+              "comment": "",
+              "lethality": "",
+              "determinism": "",
+              "created-on": ""
+            },
+            "relationships": {
+              "campaigns": {
+                "links": {
+                  "self": "",
+                  "related": ""
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "operation": "get_campaigns_relationship_iocs",
+      "title": "Get Campaign Relationship IOCs",
+      "description": "Retrieves all the details for all the IOCs that are associated with a specific campaign from McAfee Mvision Insights based on the Campaign ID you have specified.",
+      "enabled": true,
+      "category": "investigation",
+      "annotation": "get_campaigns_relationship_iocs",
+      "parameters": [
+        {
+          "title": "Campaign ID",
+          "description": "The ID of the campaign whose associated IOC list you want to retrieve from McAfee Mvision Insights.",
+          "type": "text",
+          "name": "id",
+          "required": true,
+          "editable": true,
+          "visible": true
+        }
+      ],
+      "output_schema": {
+        "links": {
+          "self": "",
+          "first": "",
+          "last": "",
+          "prev": "",
+          "next": "",
+          "related": ""
+        },
+        "data": [
+          {
+            "type": "",
+            "id": ""
+          }
+        ]
+      }
+    },
+    {
+      "operation": "get_campaign_galaxies",
+      "title": "Get Campaign Galaxies",
+      "description": "Retrieves galaxies information associated with a specific campaign from McAfee Mvision Insights based on the Campaign ID you have specified.",
+      "enabled": true,
+      "category": "investigation",
+      "annotation": "get_campaign_galaxies",
+      "parameters": [
+        {
+          "title": "Campaign ID",
+          "description": "The ID of the campaign whose associated galaxy details you want to retrieve from McAfee Mvision Insights.",
+          "type": "text",
+          "name": "id",
+          "required": true,
+          "editable": true,
+          "visible": true
+        }
+      ],
+      "output_schema": {
+        "links": {
+          "self": "",
+          "first": "",
+          "last": "",
+          "prev": "",
+          "next": ""
+        },
+        "data": [
+          {
+            "type": "",
+            "id": "",
+            "links": {
+              "self": ""
+            },
+            "attributes": {
+              "category": "",
+              "name": "",
+              "description": "",
+              "created-on": ""
+            },
+            "relationships": {
+              "campaigns": {
+                "links": {
+                  "self": "",
+                  "related": ""
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "operation": "get_campaigns_relationship_galaxies",
+      "title": "Get Campaign Relationship Galaxies",
+      "description": "Retrieves all the details for all the galaxies that are associated with a specific campaign from McAfee Mvision Insights based on the Campaign ID you have specified.",
+      "enabled": true,
+      "category": "investigation",
+      "annotation": "get_campaigns_relationship_galaxies",
+      "parameters": [
+        {
+          "title": "Campaign ID",
+          "description": "The ID of the IOC whose associated galaxies list you want to retrieve from McAfee Mvision Insights.",
+          "type": "text",
+          "name": "id",
+          "required": true,
+          "editable": true,
+          "visible": true
+        }
+      ],
+      "output_schema": {
+        "links": {
+          "self": "",
+          "first": "",
+          "last": "",
+          "prev": "",
+          "next": "",
+          "related": ""
+        },
+        "data": [
+          {
+            "type": "",
+            "id": ""
+          }
+        ]
+      }
+    },
+    {
+      "operation": "get_campaigns_detected",
+      "title": "Get All Campaigns Detected",
+      "description": "Retrieves a list of all detected campaigns or specific detected campaigns from McAfee Mvision Insight based on the input parameters you have specified.",
+      "enabled": true,
+      "category": "investigation",
+      "annotation": "get_campaigns_detected",
+      "parameters": [
+        {
+          "title": "Offset",
+          "name": "offset",
+          "description": "Index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records, say incidents starting from the 10th IOC. By default, this is set as 0.",
+          "value": 0,
+          "type": "integer",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records, say incidents starting from the 10th IOC. By default, this is set as 0."
+        },
+        {
+          "title": "Limit",
+          "description": "The maximum number of results, per page, that this operation should return.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "integer",
+          "value": 10,
+          "name": "limit",
+          "tooltip": "The maximum number of results, per page, that this operation should return."
+        },
+        {
+          "title": "Filter By",
+          "name": "filter_by",
+          "description": "Select the operator, Like or Exact, using which you want to filter the results returned by this operation, based on the name of the campaign.",
+          "type": "select",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "options": [
+            "Like",
+            "Exact"
           ],
-          "output_schema":{
-             "links":{
-                "self":"",
-                "first":"",
-                "last":"",
-                "prev":"",
-                "next":"",
-                "related":""
-             },
-             "data":[
-                {
-                   "type":"",
-                   "id":""
-                }
-             ]
-          }
-       },
-       {
-          "operation":"get_artefacts",
-          "title":"Get Artefacts",
-          "description":"Retrieves information about a specific artifact from McAfee Mvision Insights based on the hash type and hash value you have specified.",
-          "enabled":true,
-          "category":"investigation",
-          "annotation":"get_artefacts",
-          "parameters":[
-             {
-                "title":"Hash Type",
-                "type":"text",
-                "name":"hashtype",
-                "required":true,
-                "visible":true,
-                "editable":true
-             },
-             {
-                "title":"Hash Value",
-                "type":"text",
-                "name":"hashvalue",
-                "required":true,
-                "visible":true,
-                "editable":true
-             }
+          "tooltip": "This filter will be applied on Campaign Name."
+        },
+        {
+          "title": "Campaign Name",
+          "name": "campaign_name",
+          "description": "Specify the name of the campaign based on which you want to filter the campaigns returned by this operation.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the name of the campaign based on which you want to filter the campaigns returned by this operation."
+        },
+        {
+          "title": "Sector",
+          "name": "sector",
+          "description": "Specify the sector based on which you want to filter the campaigns returned by this operation.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "e.g Software",
+          "tooltip": "Specify the sector based on which you want to filter the campaigns returned by this operation."
+        },
+        {
+          "title": "Last Detected On",
+          "name": "last_detected_on",
+          "description": "Specify the DateTime when the campaign was last detected based on which you want to filter the campaigns returned by this operation.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "e.g nnull",
+          "tooltip": "Specify the DateTime when the campaign was last detected based on which you want to filter the campaigns returned by this operation."
+        },
+        {
+          "title": "Include",
+          "description": "Select Prevalence from this field to include country and sector-based prevalence in terms of devices impacted per million for each campaign object in the response.",
+          "type": "select",
+          "name": "include",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "tooltip": "Select Prevalence from this field to include country and sector-based prevalence in terms of devices impacted per million for each campaign object in the response.",
+          "options": [
+            "Prevalence"
+          ]
+        },
+        {
+          "title": "Fields",
+          "name": "fields",
+          "description": "Select or specify the fields that you want to be included in the response. This limits the contents of the response to fields that you have specified. You can select or specify fields such as Name, Threat Level ID, Description, etc.",
+          "type": "select",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "options": [
+            "ID",
+            "Name",
+            "Threat Level ID",
+            "Description",
+            "KB Article Link",
+            "Coverage",
+            "Prevalence",
+            "External Analysis",
+            "Is Coat",
+            "Last Detected On"
           ],
-          "output_schema":{
-             "links":{
-                "self":""
-             },
-             "data":{
-                "type":"",
-                "id":"",
-                "attributes":{
-                   "id":"",
-                   "md5":"",
-                   "sha1":"",
-                   "sha256":"",
-                   "classification-name":"",
-                   "classification-type":"",
-                   "file-size":"",
-                   "first-seen":""
+          "tooltip": "Select or specify the fields that you want to be included in the response. This limits the contents of the response to fields that you have specified. You can select or specify fields such as Name, Threat Level ID, Description, etc."
+        }
+      ],
+      "output_schema": {
+        "links": {
+          "self": ""
+        },
+        "data": [
+          {
+            "type": "",
+            "id": "",
+            "links": {
+              "self": ""
+            },
+            "attributes": {
+              "name": "",
+              "description": "",
+              "threat-level-id": "",
+              "kb-article-link": "",
+              "coverage": {
+                "dat_version": {
+                  "min": ""
                 }
-             }
-          }
-       },
-       {
-          "operation":"get_campaigns_list",
-          "title":"Get All Campaigns List",
-          "description":"Retrieves a list of all campaigns or specific campaigns from McAfee Mvision Insight based on the input parameters you have specified.",
-          "enabled":true,
-          "category":"investigation",
-          "annotation":"get_campaigns_list",
-          "parameters":[
-             {
-                "title":"Offset",
-                "type":"integer",
-                "name":"offset",
-                "required":false,
-                "visible":true,
-                "editable":true,
-                "value":0
-             },
-             {
-                "title":"Limit",
-                "type":"integer",
-                "name":"limit",
-                "required":false,
-                "visible":true,
-                "editable":true,
-                "value":10
-             },
-             {
-                "title":"Filter By",
-                "type":"select",
-                "name":"filter_by",
-                "required":false,
-                "visible":true,
-                "editable":true,
-                "options":[
-                   "Like",
-                   "Exact"
+              },
+              "updated-on": "",
+              "external-analysis": {
+                "links": [
                 ]
-             },
-             {
-                "title":"Campaign Name",
-                "type":"text",
-                "name":"campaign_name",
-                "required":false,
-                "visible":true,
-                "editable":true
-             },
-             {
-                "title":"Sector",
-                "type":"text",
-                "name":"sector",
-                "required":false,
-                "visible":true,
-                "editable":true
-             },
-             {
-                "title":"Include",
-                "type":"select",
-                "name":"include",
-                "required":false,
-                "visible":true,
-                "editable":true,
-                "options":[
-                   "Prevalence"
-                ]
-             },
-             {
-                "title":"Fields",
-                "type":"select",
-                "name":"fields",
-                "required":false,
-                "visible":true,
-                "editable":true,
-                "options":[
-                   "ID",
-                   "Name",
-                   "Threat Level ID",
-                   "Description",
-                   "KB Article Link",
-                   "Coverage",
-                   "Prevalence",
-                   "External Analysis",
-                   "Is Coat"
-                ]
-             }
-          ],
-          "output_schema":{
-             "links":{
-                "self":"",
-                "first":"",
-                "last":"",
-                "prev":"",
-                "next":""
-             },
-             "data":[
-                {
-                   "type":"",
-                   "id":"",
-                   "links":{
-                      "self":""
-                   },
-                   "attributes":{
-                      "name":"",
-                      "description":"",
-                      "threat-level-id":"",
-                      "kb-article-link":"",
-                      "coverage":{
-                         "dat_version":{
-                            "min":""
-                         }
-                      },
-                      "updated-on":"",
-                      "external-analysis":{
-                         "links":[
-                            
-                         ]
-                      },
-                      "is-coat":"",
-                      "created-on":"",
-                      "prevalence":{
-                         "nodes":"",
-                         "events":"",
-                         "sectors":[
-                            {
-                               "sector":"",
-                               "affected":"",
-                               "events":"",
-                               "total":""
-                            }
-                         ],
-                         "countries":[
-                            {
-                               "iso_code":"",
-                               "affected":"",
-                               "events":"",
-                               "total":""
-                            }
-                         ],
-                         "countriesTotalDevices":""
-                      }
-                   },
-                   "relationships":{
-                      "iocs":{
-                         "links":{
-                            "self":"",
-                            "related":""
-                         }
-                      },
-                      "galaxies":{
-                         "links":{
-                            "self":"",
-                            "related":""
-                         }
-                      }
-                   }
+              },
+              "is-coat": "",
+              "created-on": "",
+              "prevalence": {
+                "nodes": "",
+                "events": "",
+                "sectors": [
+                  {
+                    "sector": "",
+                    "affected": "",
+                    "events": "",
+                    "total": ""
+                  }
+                ],
+                "countries": [
+                  {
+                    "iso_code": "",
+                    "affected": "",
+                    "events": "",
+                    "total": ""
+                  }
+                ],
+                "countriesTotalDevices": ""
+              }
+            },
+            "relationships": {
+              "iocs": {
+                "links": {
+                  "self": "",
+                  "related": ""
                 }
-             ]
-          }
-       },
-       {
-          "operation":"get_campaign_details",
-          "title":"Get Campaign Details",
-          "description":"Retrieves information about a specific campaign from McAfee Mvision Insights based on the Campaign ID you have specified.",
-          "enabled":true,
-          "category":"investigation",
-          "annotation":"get_campaign_details",
-          "parameters":[
-             {
-                "title":"Campaign ID",
-                "type":"text",
-                "name":"id",
-                "required":true,
-                "visible":true,
-                "editable":true
-             },
-             {
-                "title":"Include",
-                "type":"select",
-                "name":"include",
-                "required":false,
-                "visible":true,
-                "editable":true,
-                "options":[
-                   "Prevalence"
-                ]
-             },
-             {
-                "title":"Fields",
-                "type":"select",
-                "name":"fields",
-                "required":false,
-                "visible":true,
-                "editable":true,
-                "options":[
-                   "ID",
-                   "Name",
-                   "Threat Level ID",
-                   "Description",
-                   "KB Article Link",
-                   "Coverage",
-                   "Prevalence",
-                   "External Analysis",
-                   "Is Coat"
-                ]
-             }
-          ],
-          "output_schema":{
-             "links":{
-                "self":""
-             },
-             "data":{
-                "type":"",
-                "id":"",
-                "links":{
-                   "self":""
-                },
-                "attributes":{
-                   "name":"",
-                   "description":"",
-                   "threat-level-id":"",
-                   "kb-article-link":"",
-                   "coverage":{
-                      "dat_version":{
-                         "min":""
-                      }
-                   },
-                   "updated-on":"",
-                   "external-analysis":{
-                      "links":[
-                         
-                      ]
-                   },
-                   "is-coat":"",
-                   "created-on":"",
-                   "prevalence":{
-                      "nodes":"",
-                      "events":"",
-                      "sectors":[
-                         {
-                            "sector":"",
-                            "affected":"",
-                            "events":"",
-                            "total":""
-                         }
-                      ],
-                      "countries":[
-                         {
-                            "iso_code":"",
-                            "affected":"",
-                            "events":"",
-                            "total":""
-                         }
-                      ],
-                      "countriesTotalDevices":""
-                   }
-                },
-                "relationships":{
-                   "iocs":{
-                      "links":{
-                         "self":"",
-                         "related":""
-                      }
-                   },
-                   "galaxies":{
-                      "links":{
-                         "self":"",
-                         "related":""
-                      }
-                   }
+              },
+              "galaxies": {
+                "links": {
+                  "self": "",
+                  "related": ""
                 }
-             }
+              }
+            }
           }
-       },
-       {
-          "operation":"get_campaign_iocs",
-          "title":"Get Campaign IOCs",
-          "description":"Retrieves IOCs information associated with a specific campaign from McAfee Mvision Insights based on the Campaign ID you have specified.",
-          "enabled":true,
-          "category":"investigation",
-          "annotation":"get_campaign_iocs",
-          "parameters":[
-             {
-                "title":"Campaign ID",
-                "type":"text",
-                "name":"id",
-                "required":true,
-                "visible":true,
-                "editable":true
-             }
+        ]
+      }
+    },
+    {
+      "operation": "get_events_list",
+      "title": "Get All Events List",
+      "description": "Retrieves a list of all events or specific from McAfee Mvision Insight based on the input parameters you have specified.",
+      "enabled": true,
+      "category": "investigation",
+      "annotation": "get_events_list",
+      "parameters": [
+        {
+          "title": "Offset",
+          "name": "offset",
+          "description": "Index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records, say incidents starting from the 10th Event. By default, this is set as 0.",
+          "value": 0,
+          "type": "integer",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records, say incidents starting from the 10th Event. By default, this is set as 0."
+        },
+        {
+          "title": "Limit",
+          "description": "The maximum number of results, per page, that this operation should return.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "integer",
+          "value": 10,
+          "name": "limit",
+          "tooltip": "The maximum number of results, per page, that this operation should return."
+        },
+        {
+          "title": "Artefact Type",
+          "description": "The type of artifact whose associated events you want to retrieve from the McAfee Mvision Insights.",
+          "type": "text",
+          "name": "artefact_type",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "tooltip": "Artefact Type should be md5."
+        },
+        {
+          "title": "Artefact Value",
+          "description": "The value of artifact whose associated events you want to retrieve from the McAfee Mvision Insights.",
+          "type": "text",
+          "name": "artefact_value",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "tooltip": "The value of artifact whose associated events you want to retrieve from the McAfee Mvision Insights."
+        },
+        {
+          "title": "Agent GUID",
+          "description": "The GUID of the agent whose associated events you want to retrieve from the McAfee Mvision Insights.",
+          "type": "text",
+          "name": "agent_guid",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Campaign ID",
+          "name": "id",
+          "description": "The ID of the campaign whose associated events you want to retrieve from McAfee Mvision Insight.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false
+        },
+        {
+          "title": "From Date",
+          "name": "from_date",
+          "type": "text",
+          "description": "The starting DateTime from when you want to retrieve events from McAfee Mvision Insight.",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "The starting DateTime from when you want to retrieve events from McAfee Mvision Insight."
+        },
+        {
+          "title": "To Date",
+          "name": "to_time",
+          "type": "text",
+          "description": "The ending DateTime till when you want to retrieve events from McAfee Mvision Insight.",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "The ending DateTime till when you want to retrieve events from McAfee Mvision Insight."
+        },
+        {
+          "title": "Fields",
+          "name": "fields",
+          "description": "Select or specify the fields that you want to be included in the response. This limits the contents of the response to fields that you have specified. You can select or specify fields such as Exec UID, Campaign ID, TimeStamp, etc.",
+          "type": "select",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "options": [
+            "Exec UID",
+            "Campaign ID",
+            "TimeStamp",
+            "Customer Details",
+            "MD5",
+            "SHA256"
           ],
-          "output_schema":{
-             "links":{
-                "self":"",
-                "first":"",
-                "last":"",
-                "prev":"",
-                "next":""
-             },
-             "data":[
-                {
-                   "type":"",
-                   "id":"",
-                   "links":{
-                      "self":""
-                   },
-                   "attributes":{
-                      "type":"",
-                      "value":"",
-                      "coverage":{
-                         "dat_version":{
-                            "min":""
-                         }
-                      },
-                      "uid":"",
-                      "is-coat":"",
-                      "is-sdb-dirty":"",
-                      "category":"",
-                      "comment":"",
-                      "lethality":"",
-                      "determinism":"",
-                      "created-on":""
-                   },
-                   "relationships":{
-                      "campaigns":{
-                         "links":{
-                            "self":"",
-                            "related":""
-                         }
-                      }
-                   }
+          "tooltip": "Select or specify the fields that you want to be included in the response. This limits the contents of the response to fields that you have specified. You can select or specify fields such as Exec UID, Campaign ID, TimeStamp, etc."
+        }
+      ],
+      "output_schema": {
+        "links": {
+          "self": ""
+        },
+        "data": [
+          {
+            "type": "",
+            "links": {
+              "self": ""
+            },
+            "attributes": {
+              "exec-uid": "",
+              "timestamp": "",
+              "md5": "",
+              "sha256": "",
+              "campaign-id": "",
+              "customer-details": {
+                "ma-id": "",
+                "epo-server-id": "",
+                "epo-tenant-id": ""
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "operation": "get_galaxies_list",
+      "title": "Get All Galaxies List",
+      "description": "Retrieves a list of all galaxies or specific galaxies from McAfee Mvision Insight based on the input parameters you have specified.",
+      "enabled": true,
+      "category": "investigation",
+      "annotation": "get_galaxies_list",
+      "parameters": [
+        {
+          "title": "Offset",
+          "name": "offset",
+          "description": "Index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records, say incidents starting from the 10th Galaxy. By default, this is set as 0.",
+          "value": 0,
+          "type": "integer",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records, say incidents starting from the 10th Galaxy. By default, this is set as 0."
+        },
+        {
+          "title": "Limit",
+          "description": "The maximum number of results, per page, that this operation should return.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "integer",
+          "value": 10,
+          "name": "limit",
+          "tooltip": "The maximum number of results, per page, that this operation should return."
+        },
+        {
+          "title": "Category",
+          "name": "category",
+          "description": "Select the category based on which you want to filter galaxies you want to retrieve from McAfee Mvision Insight. You can choose categories such as MITRE Tool, Botnet, Stealer, etc.",
+          "type": "select",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "options": [
+            "MITRE Tool",
+            "MITRE Attack Pattern",
+            "MITRE Intrusion Set",
+            "MITRE Malware",
+            "MITRE Enterprise Attack Tool",
+            "MITRE Enterprise Attack Malware",
+            "MITRE Enterprise Attack Pattern",
+            "MITRE Enterprise Attack Intrusion Set",
+            "MITRE Mobile Attack Intrusion Set",
+            "MITRE Mobile Attack Pattern",
+            "MITRE Pre Attack Pattern",
+            "MITRE Pre Attack Intrusion Set",
+            "Ransomware MITRE Course of Action",
+            "Ransomware Exploit Kit",
+            "Botnet",
+            "Stealer",
+            "Banker Threat Actor",
+            "Tool",
+            "Malpedia",
+            "RAT"
+          ],
+          "tooltip": "Select the category based on which you want to filter galaxies you want to retrieve from McAfee Mvision Insight. You can choose categories such as MITRE Tool, Botnet, Stealer, etc."
+        },
+        {
+          "title": "Campaign ID",
+          "name": "id",
+          "description": "The ID of the campaign whose associated galaxies list you want to retrieve from McAfee Mvision Insight.",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false
+        },
+        {
+          "title": "Fields",
+          "name": "fields",
+          "description": "Select or specify the fields that you want to be included in the response. This limits the contents of the response to fields that you have specified. You can select or specify fields such as ID, Name, Description, etc.",
+          "type": "select",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "options": [
+            "ID",
+            "NAME",
+            "Description",
+            "Category"
+          ],
+          "tooltip": "Select or specify the fields that you want to be included in the response. This limits the contents of the response to fields that you have specified. You can select or specify fields such as ID, Name, Description, etc."
+        }
+      ],
+      "output_schema": {
+        "links": {
+          "self": "",
+          "first": "",
+          "last": "",
+          "prev": "",
+          "next": ""
+        },
+        "data": [
+          {
+            "type": "",
+            "id": "",
+            "links": {
+              "self": ""
+            },
+            "attributes": {
+              "category": "",
+              "name": "",
+              "description": "",
+              "created-on": ""
+            },
+            "relationships": {
+              "campaigns": {
+                "links": {
+                  "self": "",
+                  "related": ""
                 }
-             ]
+              }
+            }
           }
-       },
-       {
-          "operation":"get_campaigns_relationship_iocs",
-          "title":"Get Campaign Relationship IOCs",
-          "description":"Retrieves all the details for all the IOCs that are associated with a specific campaign from McAfee Mvision Insights based on the Campaign ID you have specified.",
-          "enabled":true,
-          "category":"investigation",
-          "annotation":"get_campaigns_relationship_iocs",
-          "parameters":[
-             {
-                "title":"Campaign ID",
-                "type":"text",
-                "name":"id",
-                "required":true,
-                "visible":true,
-                "editable":true
-             }
-          ],
-          "output_schema":{
-             "links":{
-                "self":"",
-                "first":"",
-                "last":"",
-                "prev":"",
-                "next":"",
-                "related":""
-             },
-             "data":[
-                {
-                   "type":"",
-                   "id":""
-                }
-             ]
+        ]
+      }
+    },
+    {
+      "operation": "get_insights_events_list",
+      "title": "Get Insights Events List",
+      "description": "Retrieves a list of all insight events indicating IoC local sighting",
+      "enabled": true,
+      "category": "investigation",
+      "annotation": "get_insights_events_list",
+      "parameters": [
+        {
+          "title": "Artefact Type",
+          "type": "text",
+          "name": "artefact_type",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "description": "Enter artifact type based on which filter insight events from Mcafee Server"
+        },
+        {
+          "title": "Artefact Value",
+          "type": "text",
+          "name": "artefact_value",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "description": "Enter artifact value based on which filter insight events from Mcafee Server"
+        },
+        {
+          "title": "Agent GUID",
+          "type": "text",
+          "name": "agent_guid",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "description": "Enter agent GUID value based on which filter insight events from Mcafee Server"
+        },
+        {
+          "title": "Campaign ID",
+          "type": "text",
+          "name": "id",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "description": "Enter campaign ID based on which filter insight events from Mcafee Server"
+        },
+        {
+          "title": "From Date",
+          "type": "datetime",
+          "name": "from_date",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "description": "Enter From date to filter result from that date"
+        },
+        {
+          "title": "To Date",
+          "type": "datetime",
+          "name": "to_date",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "description": "Enter to date to filter result till that date"
+        },
+        {
+          "title": "Offset",
+          "type": "integer",
+          "name": "offset",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": 0,
+          "description": "Index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records"
+        },
+        {
+          "title": "Limit",
+          "type": "integer",
+          "name": "limit",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": 10,
+          "description": "The maximum number of results, that this operation should return."
+        }
+      ],
+      "output_schema": {
+        "links": {
+          "self": ""
+        },
+        "data": [
+          {
+            "type": "",
+            "links": {
+              "self": ""
+            },
+            "attributes": {
+              "exec-uid": "",
+              "timestamp": "",
+              "md5": "",
+              "sha256": "",
+              "campaign-id": "",
+              "customer-details": {
+                "ma-id": "",
+                "epo-server-id": "",
+                "epo-tenant-id": ""
+              }
+            }
           }
-       },
-       {
-          "operation":"get_campaign_galaxies",
-          "title":"Get Campaign Galaxies",
-          "description":"Retrieves galaxies information associated with a specific campaign from McAfee Mvision Insights based on the Campaign ID you have specified.",
-          "enabled":true,
-          "category":"investigation",
-          "annotation":"get_campaign_galaxies",
-          "parameters":[
-             {
-                "title":"Campaign ID",
-                "type":"text",
-                "name":"id",
-                "required":true,
-                "visible":true,
-                "editable":true
-             }
-          ],
-          "output_schema":{
-             "links":{
-                "self":"",
-                "first":"",
-                "last":"",
-                "prev":"",
-                "next":""
-             },
-             "data":[
-                {
-                   "type":"",
-                   "id":"",
-                   "links":{
-                      "self":""
-                   },
-                   "attributes":{
-                      "category":"",
-                      "name":"",
-                      "description":"",
-                      "created-on":""
-                   },
-                   "relationships":{
-                      "campaigns":{
-                         "links":{
-                            "self":"",
-                            "related":""
-                         }
-                      }
-                   }
-                }
-             ]
-          }
-       },
-       {
-          "operation":"get_campaigns_relationship_galaxies",
-          "title":"Get Campaign Relationship Galaxies",
-          "description":"Retrieves all the details for all the galaxies that are associated with a specific campaign from McAfee Mvision Insights based on the Campaign ID you have specified.",
-          "enabled":true,
-          "category":"investigation",
-          "annotation":"get_campaigns_relationship_galaxies",
-          "parameters":[
-             {
-                "title":"Campaign ID",
-                "type":"text",
-                "name":"id",
-                "required":true,
-                "visible":true,
-                "editable":true
-             }
-          ],
-          "output_schema":{
-             "links":{
-                "self":"",
-                "first":"",
-                "last":"",
-                "prev":"",
-                "next":"",
-                "related":""
-             },
-             "data":[
-                {
-                   "type":"",
-                   "id":""
-                }
-             ]
-          }
-       },
-       {
-          "operation":"get_campaigns_detected",
-          "title":"Get All Campaigns Detected",
-          "description":"Retrieves a list of all detected campaigns or specific detected campaigns from McAfee Mvision Insight based on the input parameters you have specified.",
-          "enabled":true,
-          "category":"investigation",
-          "annotation":"get_campaigns_detected",
-          "parameters":[
-             {
-                "title":"Offset",
-                "type":"integer",
-                "name":"offset",
-                "required":false,
-                "visible":true,
-                "editable":true,
-                "value":0
-             },
-             {
-                "title":"Limit",
-                "type":"integer",
-                "name":"limit",
-                "required":false,
-                "visible":true,
-                "editable":true,
-                "value":10
-             },
-             {
-                "title":"Filter By",
-                "type":"select",
-                "name":"filter_by",
-                "required":false,
-                "visible":true,
-                "editable":true,
-                "options":[
-                   "Like",
-                   "Exact"
-                ]
-             },
-             {
-                "title":"Campaign Name",
-                "type":"text",
-                "name":"campaign_name",
-                "required":false,
-                "visible":true,
-                "editable":true
-             },
-             {
-                "title":"Sector",
-                "type":"text",
-                "name":"sector",
-                "required":false,
-                "visible":true,
-                "editable":true
-             },
-             {
-                "title":"Last Detected On",
-                "type":"text",
-                "name":"last_detected_on",
-                "required":false,
-                "visible":true,
-                "editable":true
-             },
-             {
-                "title":"Include",
-                "type":"select",
-                "name":"include",
-                "required":false,
-                "visible":true,
-                "editable":true,
-                "options":[
-                   "Prevalence"
-                ]
-             },
-             {
-                "title":"Fields",
-                "type":"select",
-                "name":"fields",
-                "required":false,
-                "visible":true,
-                "editable":true,
-                "options":[
-                   "ID",
-                   "Name",
-                   "Threat Level ID",
-                   "Description",
-                   "KB Article Link",
-                   "Coverage",
-                   "Prevalence",
-                   "External Analysis",
-                   "Is Coat",
-                   "Last Detected On"
-                ]
-             }
-          ],
-          "output_schema":{
-             "links":{
-                "self":""
-             },
-             "data":[
-                {
-                   "type":"",
-                   "id":"",
-                   "links":{
-                      "self":""
-                   },
-                   "attributes":{
-                      "name":"",
-                      "description":"",
-                      "threat-level-id":"",
-                      "kb-article-link":"",
-                      "coverage":{
-                         "dat_version":{
-                            "min":""
-                         }
-                      },
-                      "updated-on":"",
-                      "external-analysis":{
-                         "links":[
-                            
-                         ]
-                      },
-                      "is-coat":"",
-                      "created-on":"",
-                      "prevalence":{
-                         "nodes":"",
-                         "events":"",
-                         "sectors":[
-                            {
-                               "sector":"",
-                               "affected":"",
-                               "events":"",
-                               "total":""
-                            }
-                         ],
-                         "countries":[
-                            {
-                               "iso_code":"",
-                               "affected":"",
-                               "events":"",
-                               "total":""
-                            }
-                         ],
-                         "countriesTotalDevices":""
-                      }
-                   },
-                   "relationships":{
-                      "iocs":{
-                         "links":{
-                            "self":"",
-                            "related":""
-                         }
-                      },
-                      "galaxies":{
-                         "links":{
-                            "self":"",
-                            "related":""
-                         }
-                      }
-                   }
-                }
-             ]
-          }
-       },
-       {
-          "operation":"get_events_list",
-          "title":"Get All Events List",
-          "description":"Retrieves a list of all events or specific from McAfee Mvision Insight based on the input parameters you have specified.",
-          "enabled":true,
-          "category":"investigation",
-          "annotation":"get_events_list",
-          "parameters":[
-             {
-                "title":"Offset",
-                "type":"integer",
-                "name":"offset",
-                "required":false,
-                "visible":true,
-                "editable":true,
-                "value":0
-             },
-             {
-                "title":"Limit",
-                "type":"integer",
-                "name":"limit",
-                "required":false,
-                "visible":true,
-                "editable":true,
-                "value":10
-             },
-             {
-                "title":"Artefact Type",
-                "type":"text",
-                "name":"artefact_type",
-                "required":false,
-                "visible":true,
-                "editable":true
-             },
-             {
-                "title":"Artefact Value",
-                "type":"text",
-                "name":"artefact_value",
-                "required":false,
-                "visible":true,
-                "editable":true
-             },
-             {
-                "title":"Agent GUID",
-                "type":"text",
-                "name":"agent_guid",
-                "required":false,
-                "visible":true,
-                "editable":true
-             },
-             {
-                "title":"Campaign ID",
-                "type":"text",
-                "name":"id",
-                "required":false,
-                "visible":true,
-                "editable":true
-             },
-             {
-                "title":"From Date",
-                "type":"text",
-                "name":"from_date",
-                "required":false,
-                "visible":true,
-                "editable":true
-             },
-             {
-                "title":"To Date",
-                "type":"text",
-                "name":"to_date",
-                "required":false,
-                "visible":true,
-                "editable":true
-             },
-             {
-                "title":"Fields",
-                "type":"select",
-                "name":"fields",
-                "required":false,
-                "visible":true,
-                "editable":true,
-                "options":[
-                   "Exec UID",
-                   "Campaign ID",
-                   "TimeStamp",
-                   "Customer Details",
-                   "MD5",
-                   "SHA256"
-                ]
-             }
-          ],
-          "output_schema":{
-             "links":{
-                "self":""
-             },
-             "data":[
-                {
-                   "type":"",
-                   "links":{
-                      "self":""
-                   },
-                   "attributes":{
-                      "exec-uid":"",
-                      "timestamp":"",
-                      "md5":"",
-                      "sha256":"",
-                      "campaign-id":"",
-                      "customer-details":{
-                         "ma-id":"",
-                         "epo-server-id":"",
-                         "epo-tenant-id":""
-                      }
-                   }
-                }
-             ]
-          }
-       },
-       {
-          "operation":"get_insights_events_list",
-          "title":"Get Insights Events List",
-          "description":"Retrieves a list of all insight events indicating IoC local sighting",
-          "enabled":true,
-          "category":"investigation",
-          "annotation":"get_insights_events_list",
-          "parameters":[
-             {
-                "title":"Insight Server URL",
-                "type":"text",
-                "name":"insights_url",
-                "required":true,
-                "visible":true,
-                "editable":true,
-                "value":"https://insights.mcafee.com"
-             },
-             {
-                "title":"Artefact Type",
-                "type":"text",
-                "name":"artefact_type",
-                "required":false,
-                "visible":true,
-                "editable":true
-             },
-             {
-                "title":"Artefact Value",
-                "type":"text",
-                "name":"artefact_value",
-                "required":false,
-                "visible":true,
-                "editable":true
-             },
-             {
-                "title":"Agent GUID",
-                "type":"text",
-                "name":"agent_guid",
-                "required":false,
-                "visible":true,
-                "editable":true
-             },
-             {
-                "title":"Campaign ID",
-                "type":"text",
-                "name":"id",
-                "required":false,
-                "visible":true,
-                "editable":true
-             },
-             {
-                "title":"From Date",
-                "type":"datetime",
-                "name":"from_date",
-                "required":false,
-                "visible":true,
-                "editable":true
-             },
-             {
-                "title":"To Date",
-                "type":"datetime",
-                "name":"to_date",
-                "required":false,
-                "visible":true,
-                "editable":true
-             },
-             {
-                "title":"Offset",
-                "type":"integer",
-                "name":"offset",
-                "required":false,
-                "visible":true,
-                "editable":true,
-                "value":0
-             },
-             {
-                "title":"Limit",
-                "type":"integer",
-                "name":"limit",
-                "required":false,
-                "visible":true,
-                "editable":true,
-                "value":10
-             }
-          ],
-          "output_schema":{
-             "links":{
-                "self":""
-             },
-             "data":[
-                {
-                   "type":"",
-                   "links":{
-                      "self":""
-                   },
-                   "attributes":{
-                      "exec-uid":"",
-                      "timestamp":"",
-                      "md5":"",
-                      "sha256":"",
-                      "campaign-id":"",
-                      "customer-details":{
-                         "ma-id":"",
-                         "epo-server-id":"",
-                         "epo-tenant-id":""
-                      }
-                   }
-                }
-             ]
-          }
-       },
-       {
-          "operation":"get_galaxies_list",
-          "title":"Get All Galaxies List",
-          "description":"Retrieves a list of all galaxies or specific galaxies from McAfee Mvision Insight based on the input parameters you have specified.",
-          "enabled":true,
-          "category":"investigation",
-          "annotation":"get_galaxies_list",
-          "parameters":[
-             {
-                "title":"Offset",
-                "type":"integer",
-                "name":"offset",
-                "required":false,
-                "visible":true,
-                "editable":true,
-                "value":0
-             },
-             {
-                "title":"Limit",
-                "type":"integer",
-                "name":"limit",
-                "required":false,
-                "visible":true,
-                "editable":true,
-                "value":10
-             },
-             {
-                "title":"Category",
-                "type":"select",
-                "name":"category",
-                "required":false,
-                "visible":true,
-                "editable":true,
-                "options":[
-                   "MITRE Tool",
-                   "MITRE Attack Pattern",
-                   "MITRE Intrusion Set",
-                   "MITRE Malware",
-                   "MITRE Enterprise Attack Tool",
-                   "MITRE Enterprise Attack Malware",
-                   "MITRE Enterprise Attack Pattern",
-                   "MITRE Enterprise Attack Intrusion Set",
-                   "MITRE Mobile Attack Intrusion Set",
-                   "MITRE Mobile Attack Pattern",
-                   "MITRE Pre Attack Pattern",
-                   "MITRE Pre Attack Intrusion Set",
-                   "Ransomware MITRE Course of Action",
-                   "Ransomware Exploit Kit",
-                   "Botnet",
-                   "Stealer",
-                   "Banker Threat Actor",
-                   "Tool",
-                   "Malpedia",
-                   "RAT"
-                ]
-             },
-             {
-                "title":"Campaign ID",
-                "type":"text",
-                "name":"id",
-                "required":false,
-                "visible":true,
-                "editable":true
-             },
-             {
-                "title":"Fields",
-                "type":"select",
-                "name":"fields",
-                "required":false,
-                "visible":true,
-                "editable":true,
-                "options":[
-                   "ID",
-                   "NAME",
-                   "Description",
-                   "Category"
-                ]
-             }
-          ],
-          "output_schema":{
-             "links":{
-                "self":"",
-                "first":"",
-                "last":"",
-                "prev":"",
-                "next":""
-             },
-             "data":[
-                {
-                   "type":"",
-                   "id":"",
-                   "links":{
-                      "self":""
-                   },
-                   "attributes":{
-                      "category":"",
-                      "name":"",
-                      "description":"",
-                      "created-on":""
-                   },
-                   "relationships":{
-                      "campaigns":{
-                         "links":{
-                            "self":"",
-                            "related":""
-                         }
-                      }
-                   }
-                }
-             ]
-          }
-       },
-       {
-          "operation":"get_related_samples",
-          "title":"Get Related Samples",
-          "description":"Returns a list of samples related to provided sample",
-          "enabled":true,
-          "category":"investigation",
-          "annotation":"get_related_samples",
-          "parameters":[
-             {
-                "title":"Sample MD5 Hash",
-                "type":"text",
-                "name":"samplemd5",
-                "required":true,
-                "visible":true,
-                "editable":true,
-                "tooltip":"Hash of the sample"
-             },
-             {
-                "title":"Static Feature MD5 Hash",
-                "type":"text",
-                "name":"sfvecmd5",
-                "required":true,
-                "visible":true,
-                "editable":true,
-                "tooltip":"Hash of the static feature"
-             },
-             {
-                "title":"Static Feature Version",
-                "type":"integer",
-                "name":"ver",
-                "required":true,
-                "visible":true,
-                "editable":true,
-                "value": 1,
-                "tooltip":"Version of the static feature"
-             },
-             {
-                "title":"Days Since Last Seen",
-                "type":"integer",
-                "name":"lastseen",
-                "required":false,
-                "visible":true,
-                "editable":true,
-                "tooltip":"Last seen in days, which will be considered to limit the lookup (minimum value: 1)"
-             },
-             {
-                "title":"Offset",
-                "type":"integer",
-                "name":"offset",
-                "required":false,
-                "visible":true,
-                "editable":true,
-                "value":0
-             },
-             {
-                "title":"Limit",
-                "type":"integer",
-                "name":"limit",
-                "required":false,
-                "visible":true,
-                "editable":true,
-                "value":10
-             }
-          ],
-          "output_schema":""
-       }
-    ],
-    "cs_approved":false,
-    "cs_compatible":true,
-    "help_online":"https://docs.fortinet.com/document/fortisoar/1.0.0/mcafee-mvision-insights/200/mcafee-mvision-insights-v1-0-0",
-    "icon_medium_name":""
- }
+        ]
+      }
+    },
+    {
+      "operation": "get_related_samples",
+      "title": "Get Related Samples",
+      "description": "Returns a list of samples related to provided sample, based on input parameters you have provided",
+      "enabled": true,
+      "category": "investigation",
+      "annotation": "get_related_samples",
+      "parameters": [
+        {
+          "title": "Sample MD5 Hash",
+          "type": "text",
+          "name": "samplemd5",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Hash of the sample",
+          "description": "Enter sample MD5 Hash value to get its related samples"
+        },
+        {
+          "title": "Static Feature MD5 Hash",
+          "type": "text",
+          "name": "sfvecmd5",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Hash of the static feature",
+          "description": "Enter Static Feature MD5 Hash value to get its related samples"
+        },
+        {
+          "title": "Static Feature Version",
+          "type": "integer",
+          "name": "ver",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "value": 1,
+          "tooltip": "Version of the static feature",
+          "description": "Enter version of the static feature"
+        },
+        {
+          "title": "Days Since Last Seen",
+          "type": "integer",
+          "name": "lastseen",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Last seen in days, which will be considered to limit the lookup (minimum value: 1)",
+          "description": "Last seen in days, which will be considered to limit the lookup (minimum value: 1)"
+        },
+        {
+          "title": "Offset",
+          "type": "integer",
+          "name": "offset",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": 0,
+          "description": "Index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records"
+        },
+        {
+          "title": "Limit",
+          "type": "integer",
+          "name": "limit",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": 10,
+          "description": "The maximum number of results, that this operation should return."
+        }
+      ],
+      "output_schema": ""
+    }
+  ]
+}

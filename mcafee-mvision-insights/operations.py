@@ -1,5 +1,5 @@
 """ Copyright start
-  Copyright (C) 2008 - 2021 Fortinet Inc.
+  Copyright (C) 2008 - 2022 Fortinet Inc.
   All rights reserved.
   FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
   Copyright end """
@@ -10,7 +10,7 @@ from requests_toolbelt.utils import dump
 from .constants import *
 
 logger = get_logger('mcafee-mvision-insights')
-logger.setLevel(logging.DEBUG)
+
 
 class McAfeeMvisionInsights(object):
     def generate_token(self):
@@ -307,15 +307,15 @@ def get_events_list(config, params):
         logger.exception("{0}".format(str(err)))
         raise ConnectorError("{0}".format(str(err)))
 
+
 def get_insights_events_list(config, params):
     try:
         mv = McAfeeMvisionInsights(config)
         endpoint = 'api/v2/events'
-        insights_url = params.get('insights_url').strip('/')
-        if not insights_url.startswith('https://') and not insights_url.startswith('http://'):
-            insights_url = 'https://{0}/'.format(insights_url)
+        if not INSIGHT_URL.startswith('https://') and not INSIGHT_URL.startswith('http://'):
+            insights_url = 'https://{0}/'.format(INSIGHT_URL)
         else:
-            insights_url = insights_url + '/'      
+            insights_url = INSIGHT_URL + '/'
         payload = {
             'page[offset]': params.get('offset'),
             'page[limit]': params.get('limit'),
@@ -332,6 +332,7 @@ def get_insights_events_list(config, params):
     except Exception as err:
         logger.exception("{0}".format(str(err)))
         raise ConnectorError("{0}".format(str(err)))
+
 
 def get_galaxies_list(config, params):
     try:
@@ -357,6 +358,7 @@ def get_galaxies_list(config, params):
         logger.exception("{0}".format(str(err)))
         raise ConnectorError("{0}".format(str(err)))
 
+
 def get_related_samples(config, params):
     try:
         mv = McAfeeMvisionInsights(config)
@@ -375,6 +377,7 @@ def get_related_samples(config, params):
     except Exception as err:
         logger.exception("{0}".format(str(err)))
         raise ConnectorError("{0}".format(str(err)))
+
 
 def _check_health(config):
     try:
