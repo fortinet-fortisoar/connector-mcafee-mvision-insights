@@ -1,3 +1,10 @@
+""" Copyright start
+  Copyright (C) 2008 - 2022 Fortinet Inc.
+  All rights reserved.
+  FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
+  Copyright end """
+
+INSIGHT_URL = 'https://insights.mcafee.com'
 errors = {
     401: 'Unauthorized: Client/API Key unknown',
     403: 'Unauthorized: Password mismatch',

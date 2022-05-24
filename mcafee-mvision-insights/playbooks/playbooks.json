@@ -7,12 +7,12 @@
       "description": "Sample playbooks for \"McAfee Mvision Insights\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete.",
       "visible": true,
       "image": "/api/3/images/eca06f4c-77a9-429f-8cfa-90c330976116",
-      "uuid": "d4d65125-54f6-4d88-baaa-c0ec979d2eaa",
-      "id": 125,
-      "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-      "createDate": 1651846409,
-      "modifyUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-      "modifyDate": 1651846409,
+      "uuid": "a1ae7c13-be5d-44bc-975a-6fa3384a1603",
+      "id": 1456,
+      "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+      "createDate": 1653302436,
+      "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+      "modifyDate": 1653302436,
       "recordTags": [],
       "workflows": [
         {
@@ -28,47 +28,17 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1636721526,
-          "collection": "/api/3/workflow_collections/d4d65125-54f6-4d88-baaa-c0ec979d2eaa",
+          "lastModifyDate": 1653302436,
+          "collection": "/api/3/workflow_collections/a1ae7c13-be5d-44bc-975a-6fa3384a1603",
           "versions": [],
-          "triggerStep": "/api/3/workflow_steps/89a13d1a-c890-4da7-ae82-9faa1c77df83",
+          "triggerStep": "/api/3/workflow_steps/a438d6ae-acea-49d1-a552-21445127493d",
           "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Get All Campaigns Detected",
-              "description": null,
-              "arguments": {
-                "name": "McAfee Mvision Insights",
-                "config": "",
-                "params": {
-                  "limit": 10,
-                  "offset": 0,
-                  "sector": "",
-                  "include": "Prevalence",
-                  "filter_by": "",
-                  "campaign_name": "",
-                  "last_detected_on": ""
-                },
-                "version": "1.0.0",
-                "connector": "mcafee-mvision-insights",
-                "operation": "get_campaigns_detected",
-                "operationTitle": "Get All Campaigns Detected",
-                "pickFromTenant": false,
-                "step_variables": []
-              },
-              "status": null,
-              "top": "165",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "uuid": "2ff093f9-66b8-449b-8cf8-98045a90f8b2",
-              "id": 6766
-            },
             {
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "arguments": {
-                "route": "47ed878a-ee39-4efe-bd66-d72ab82b1408",
+                "route": "ff206df9-e6e2-4cb7-a27c-545fde90a587",
                 "title": "McAfee Mvision Insights: Get All Campaigns Detected",
                 "resources": [
                   "alerts"
@@ -85,22 +55,53 @@
                 "singleRecordExecution": false
               },
               "status": null,
-              "top": "30",
-              "left": "125",
+              "top": "20",
+              "left": "120",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "uuid": "89a13d1a-c890-4da7-ae82-9faa1c77df83",
-              "id": 6767
+              "uuid": "a438d6ae-acea-49d1-a552-21445127493d",
+              "id": 64846
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get All Campaigns Detected",
+              "description": null,
+              "arguments": {
+                "name": "McAfee Mvision Insights",
+                "config": "d94ff3ba-0ce9-4dbc-9168-2f4e62589cc3",
+                "params": {
+                  "limit": 10,
+                  "fields": "",
+                  "offset": 0,
+                  "sector": "",
+                  "include": "Prevalence",
+                  "filter_by": "",
+                  "campaign_name": "",
+                  "last_detected_on": ""
+                },
+                "version": "1.1.0",
+                "connector": "mcafee-mvision-insights",
+                "operation": "get_campaigns_detected",
+                "operationTitle": "Get All Campaigns Detected",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "160",
+              "left": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "e0f204d0-9c66-449d-b357-2bb4c3b25048",
+              "id": 64845
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
               "name": "Start -> Get All Campaigns Detected",
-              "targetStep": "/api/3/workflow_steps/2ff093f9-66b8-449b-8cf8-98045a90f8b2",
-              "sourceStep": "/api/3/workflow_steps/89a13d1a-c890-4da7-ae82-9faa1c77df83",
+              "targetStep": "/api/3/workflow_steps/e0f204d0-9c66-449d-b357-2bb4c3b25048",
+              "sourceStep": "/api/3/workflow_steps/a438d6ae-acea-49d1-a552-21445127493d",
               "label": null,
               "isExecuted": false,
-              "uuid": "6883ba37-c5d9-455f-975a-c843babfd8c1"
+              "uuid": "68b95c6c-d71c-4180-b0a7-db54de24a5bb"
             }
           ],
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
@@ -109,11 +110,11 @@
             "McAfee",
             "mcafee-mvision-insights"
           ],
-          "id": 1475,
-          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "createDate": 1651846409,
-          "modifyUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "modifyDate": 1651846409,
+          "id": 20113,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1653302436,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1653302436,
           "owners": [],
           "isPrivate": false
         },
@@ -130,17 +131,46 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1636624233,
-          "collection": "/api/3/workflow_collections/d4d65125-54f6-4d88-baaa-c0ec979d2eaa",
+          "lastModifyDate": 1653302436,
+          "collection": "/api/3/workflow_collections/a1ae7c13-be5d-44bc-975a-6fa3384a1603",
           "versions": [],
-          "triggerStep": "/api/3/workflow_steps/43c8b34d-4f49-4720-a7fb-299e70168ab8",
+          "triggerStep": "/api/3/workflow_steps/fc9e3291-2f70-453d-ac5c-acfaf16bdb3e",
           "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get All IOC List",
+              "description": null,
+              "arguments": {
+                "name": "McAfee Mvision Insights",
+                "config": "d94ff3ba-0ce9-4dbc-9168-2f4e62589cc3",
+                "params": {
+                  "id": "",
+                  "iocs": "",
+                  "type": "",
+                  "limit": "",
+                  "fields": "",
+                  "offset": 0
+                },
+                "version": "1.1.0",
+                "connector": "mcafee-mvision-insights",
+                "operation": "get_ioc_list",
+                "operationTitle": "Get All IOC List",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "160",
+              "left": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "c9958293-4010-491f-b224-33956c49783c",
+              "id": 64848
+            },
             {
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "arguments": {
-                "route": "a0440315-9739-4966-8c4b-c4955a1879de",
+                "route": "15a245cf-bed0-4cae-b50d-0adab13db5ac",
                 "title": "McAfee Mvision Insights: Get All IOC List",
                 "resources": [
                   "alerts"
@@ -160,47 +190,19 @@
               "top": "30",
               "left": "125",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "uuid": "43c8b34d-4f49-4720-a7fb-299e70168ab8",
-              "id": 6768
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Get All IOC List",
-              "description": null,
-              "arguments": {
-                "name": "McAfee Mvision Insights",
-                "config": "",
-                "params": {
-                  "id": "",
-                  "iocs": "",
-                  "type": "",
-                  "limit": "",
-                  "offset": 0
-                },
-                "version": "1.0.0",
-                "connector": "mcafee-mvision-insights",
-                "operation": "get_ioc_list",
-                "operationTitle": "Get All IOC List",
-                "pickFromTenant": false,
-                "step_variables": []
-              },
-              "status": null,
-              "top": "165",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "uuid": "eb5d9aeb-6c69-4092-a278-ba48d948fbb6",
-              "id": 6769
+              "uuid": "fc9e3291-2f70-453d-ac5c-acfaf16bdb3e",
+              "id": 64847
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
               "name": "Start -> Get All IOC List",
-              "targetStep": "/api/3/workflow_steps/eb5d9aeb-6c69-4092-a278-ba48d948fbb6",
-              "sourceStep": "/api/3/workflow_steps/43c8b34d-4f49-4720-a7fb-299e70168ab8",
+              "targetStep": "/api/3/workflow_steps/c9958293-4010-491f-b224-33956c49783c",
+              "sourceStep": "/api/3/workflow_steps/fc9e3291-2f70-453d-ac5c-acfaf16bdb3e",
               "label": null,
               "isExecuted": false,
-              "uuid": "028d17bd-0ac0-449e-ab1b-19f588d1dfaf"
+              "uuid": "5852f685-fa6a-4ac4-ab0c-7534b24a9ca9"
             }
           ],
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
@@ -209,11 +211,11 @@
             "Mcafee",
             "mcafee-mvision-insights"
           ],
-          "id": 1476,
-          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "createDate": 1651846409,
-          "modifyUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "modifyDate": 1651846409,
+          "id": 20114,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1653302436,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1653302436,
           "owners": [],
           "isPrivate": false
         },
@@ -230,10 +232,10 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1636721018,
-          "collection": "/api/3/workflow_collections/d4d65125-54f6-4d88-baaa-c0ec979d2eaa",
+          "lastModifyDate": 1653302436,
+          "collection": "/api/3/workflow_collections/a1ae7c13-be5d-44bc-975a-6fa3384a1603",
           "versions": [],
-          "triggerStep": "/api/3/workflow_steps/a257d7fc-43ad-4bab-abed-52c140f16aca",
+          "triggerStep": "/api/3/workflow_steps/9131a39c-c81a-4219-80fb-3e451c486052",
           "steps": [
             {
               "@type": "WorkflowStep",
@@ -241,11 +243,11 @@
               "description": null,
               "arguments": {
                 "name": "McAfee Mvision Insights",
-                "config": "",
+                "config": "d94ff3ba-0ce9-4dbc-9168-2f4e62589cc3",
                 "params": {
                   "id": "00a10ad2-ad7b-11ea-9477-02d538d9640e"
                 },
-                "version": "1.0.0",
+                "version": "1.1.0",
                 "connector": "mcafee-mvision-insights",
                 "operation": "get_campaign_iocs",
                 "operationTitle": "Get Campaign IOCs",
@@ -256,15 +258,15 @@
               "top": "165",
               "left": "125",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "uuid": "1193db03-2d34-4d0c-8bb9-168a7250a1bf",
-              "id": 6770
+              "uuid": "4ae084b8-d454-4f7b-ac3e-8ab55d4ccfe1",
+              "id": 64849
             },
             {
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "arguments": {
-                "route": "2a0f409e-7b11-4dea-8001-98f4f7f4f891",
+                "route": "e0adb5e7-9853-4e79-8bd8-08f8ddfb7c6f",
                 "title": "McAfee Mvision Insights: Get Campaign IOCs",
                 "resources": [
                   "alerts"
@@ -284,19 +286,19 @@
               "top": "30",
               "left": "125",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "uuid": "a257d7fc-43ad-4bab-abed-52c140f16aca",
-              "id": 6771
+              "uuid": "9131a39c-c81a-4219-80fb-3e451c486052",
+              "id": 64850
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
               "name": "Start -> Get Campaign IOCs",
-              "targetStep": "/api/3/workflow_steps/1193db03-2d34-4d0c-8bb9-168a7250a1bf",
-              "sourceStep": "/api/3/workflow_steps/a257d7fc-43ad-4bab-abed-52c140f16aca",
+              "targetStep": "/api/3/workflow_steps/4ae084b8-d454-4f7b-ac3e-8ab55d4ccfe1",
+              "sourceStep": "/api/3/workflow_steps/9131a39c-c81a-4219-80fb-3e451c486052",
               "label": null,
               "isExecuted": false,
-              "uuid": "834ac5fc-c071-4b98-8fd5-75ec1ae72bf9"
+              "uuid": "1602f29c-1990-43fe-84ed-e5e08790bd5d"
             }
           ],
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
@@ -305,11 +307,11 @@
             "McAfee",
             "mcafee-mvision-insights"
           ],
-          "id": 1477,
-          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "createDate": 1651846409,
-          "modifyUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "modifyDate": 1651846409,
+          "id": 20115,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1653302436,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1653302436,
           "owners": [],
           "isPrivate": false
         },
@@ -326,39 +328,11 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1651846997,
-          "collection": "/api/3/workflow_collections/d4d65125-54f6-4d88-baaa-c0ec979d2eaa",
+          "lastModifyDate": 1653302436,
+          "collection": "/api/3/workflow_collections/a1ae7c13-be5d-44bc-975a-6fa3384a1603",
           "versions": [],
-          "triggerStep": "/api/3/workflow_steps/bd95792a-4e68-44ad-8aab-46628c5d8c09",
+          "triggerStep": "/api/3/workflow_steps/cdb3a25b-8390-4947-8fe7-2cf4236d5022",
           "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "360c9270-86d0-463a-86a4-b5297d45b1ac",
-                "title": "McAfee Mvision Insights: Get Artefacts",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "params": [],
-                    "records": "{{vars.input.records}}"
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "30",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "uuid": "bd95792a-4e68-44ad-8aab-46628c5d8c09",
-              "id": 6796
-            },
             {
               "@type": "WorkflowStep",
               "name": "Get Related Samples",
@@ -385,444 +359,15 @@
               "top": "165",
               "left": "125",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "uuid": "2eaa9692-6e8d-4989-9494-0d110b6b441d",
-              "id": 6797
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start -> Get Artefacts",
-              "targetStep": "/api/3/workflow_steps/2eaa9692-6e8d-4989-9494-0d110b6b441d",
-              "sourceStep": "/api/3/workflow_steps/bd95792a-4e68-44ad-8aab-46628c5d8c09",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "8f7b78c4-ec82-49af-8873-9fef84d38b82"
-            }
-          ],
-          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-          "uuid": "0fc304d4-62d9-408d-9b82-4954f21aa6a0",
-          "recordTags": [
-            "McAfee",
-            "mcafee-mvision-insights"
-          ],
-          "id": 1490,
-          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "createDate": 1651846593,
-          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "modifyDate": 1651846998,
-          "owners": [],
-          "isPrivate": false
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get IOC Details",
-          "aliasName": null,
-          "tag": "#mcafee-mvision-insights",
-          "description": "Retrieves information about a specific IOC from McAfee Mvision Insights based on the IOC ID you have specified.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1636624294,
-          "collection": "/api/3/workflow_collections/d4d65125-54f6-4d88-baaa-c0ec979d2eaa",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/d114b2fe-3e3d-42bd-b3eb-d899d18db4cd",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Get IOC Details",
-              "description": null,
-              "arguments": {
-                "name": "McAfee Mvision Insights",
-                "config": "",
-                "params": {
-                  "id": "00002945-edb8-11ea-9477-02d538d9640e"
-                },
-                "version": "1.0.0",
-                "connector": "mcafee-mvision-insights",
-                "operation": "get_ioc_details",
-                "operationTitle": "Get IOC Details",
-                "pickFromTenant": false,
-                "step_variables": []
-              },
-              "status": null,
-              "top": "165",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "uuid": "28d9f37e-8b53-43ee-815a-e9f19f3c0850",
-              "id": 6772
+              "uuid": "21697657-9618-4d3e-8216-e108f3fc764c",
+              "id": 64852
             },
             {
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "arguments": {
-                "route": "b36f6b8e-322e-405a-8a55-12513e528d14",
-                "title": "McAfee Mvision Insights: Get IOC Details",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "params": [],
-                    "records": "{{vars.input.records}}"
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "30",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "uuid": "d114b2fe-3e3d-42bd-b3eb-d899d18db4cd",
-              "id": 6773
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start -> Get IOC Details",
-              "targetStep": "/api/3/workflow_steps/28d9f37e-8b53-43ee-815a-e9f19f3c0850",
-              "sourceStep": "/api/3/workflow_steps/d114b2fe-3e3d-42bd-b3eb-d899d18db4cd",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "d4adaa0f-7e27-4a4f-a053-d4f0e644dbcc"
-            }
-          ],
-          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-          "uuid": "28dcbb0b-1873-4cf7-b4a4-bb2fa435d8d3",
-          "recordTags": [
-            "Mcafee",
-            "mcafee-mvision-insights"
-          ],
-          "id": 1478,
-          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "createDate": 1651846409,
-          "modifyUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "modifyDate": 1651846409,
-          "owners": [],
-          "isPrivate": false
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get IOC Campaigns",
-          "aliasName": null,
-          "tag": "#mcafee-mvision-insights",
-          "description": "Retrieves a list of all campaigns for an specific IOC from McAfee Mvision Insights based on the IOC ID you have specified.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1636624333,
-          "collection": "/api/3/workflow_collections/d4d65125-54f6-4d88-baaa-c0ec979d2eaa",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/98823ade-a805-4b64-b636-bfa1255d4756",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "49252253-92f5-4acc-a672-0a8c21784b50",
-                "title": "McAfee Mvision Insights: Get IOC Campaigns",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "params": [],
-                    "records": "{{vars.input.records}}"
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "30",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "uuid": "98823ade-a805-4b64-b636-bfa1255d4756",
-              "id": 6774
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Get IOC Campaigns",
-              "description": null,
-              "arguments": {
-                "name": "McAfee Mvision Insights",
-                "config": "",
-                "params": {
-                  "id": "00002945-edb8-11ea-9477-02d538d9640e"
-                },
-                "version": "1.0.0",
-                "connector": "mcafee-mvision-insights",
-                "operation": "get_ioc_campaigns",
-                "operationTitle": "Get IOC Campaigns",
-                "pickFromTenant": false,
-                "step_variables": []
-              },
-              "status": null,
-              "top": "165",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "uuid": "a03911db-01be-4922-815f-9d78cb66293c",
-              "id": 6775
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start -> Get IOC Campaigns",
-              "targetStep": "/api/3/workflow_steps/a03911db-01be-4922-815f-9d78cb66293c",
-              "sourceStep": "/api/3/workflow_steps/98823ade-a805-4b64-b636-bfa1255d4756",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "c3a93637-3ca6-4766-9cbf-7fff4f095c3e"
-            }
-          ],
-          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-          "uuid": "368feefb-3c0d-4a94-9495-f680f462df8a",
-          "recordTags": [
-            "McAfee",
-            "mcafee-mvision-insights"
-          ],
-          "id": 1479,
-          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "createDate": 1651846409,
-          "modifyUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "modifyDate": 1651846409,
-          "owners": [],
-          "isPrivate": false
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get Campaign Relationship IOCs",
-          "aliasName": null,
-          "tag": "#mcafee-mvision-insights",
-          "description": "Retrieves a relationship campaigns for an IOCs from McAfee Mvision Insights based on the Campaign ID you have specified.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1636721131,
-          "collection": "/api/3/workflow_collections/d4d65125-54f6-4d88-baaa-c0ec979d2eaa",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/6c0d4fff-09fa-4e13-bc11-e17286e07322",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Get Campaign Relationship IOCs",
-              "description": null,
-              "arguments": {
-                "name": "McAfee Mvision Insights",
-                "config": "",
-                "params": {
-                  "id": "00a10ad2-ad7b-11ea-9477-02d538d9640e"
-                },
-                "version": "1.0.0",
-                "connector": "mcafee-mvision-insights",
-                "operation": "get_campaigns_relationship_iocs",
-                "operationTitle": "Get Campaign Relationship IOCs",
-                "pickFromTenant": false,
-                "step_variables": []
-              },
-              "status": null,
-              "top": "165",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "uuid": "19361e02-a433-45d2-9865-f07c9be37963",
-              "id": 6776
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "2df07f46-6b61-49d2-ae06-44e3b1eed169",
-                "title": "McAfee Mvision Insights: Get Campaign Relationship IOCs",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "params": [],
-                    "records": "{{vars.input.records}}"
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "30",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "uuid": "6c0d4fff-09fa-4e13-bc11-e17286e07322",
-              "id": 6777
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start -> Get Campaign Relationship IOCs",
-              "targetStep": "/api/3/workflow_steps/19361e02-a433-45d2-9865-f07c9be37963",
-              "sourceStep": "/api/3/workflow_steps/6c0d4fff-09fa-4e13-bc11-e17286e07322",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "08cfed69-88b1-43aa-b81f-b17f9dd2779b"
-            }
-          ],
-          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-          "uuid": "52d6cc93-0e45-45a6-87a1-61fede9719e6",
-          "recordTags": [
-            "McAfee",
-            "mcafee-mvision-insights"
-          ],
-          "id": 1480,
-          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "createDate": 1651846409,
-          "modifyUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "modifyDate": 1651846409,
-          "owners": [],
-          "isPrivate": false
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get Campaign Details",
-          "aliasName": null,
-          "tag": "#mcafee-mvision-insights",
-          "description": "Retrieves information about a specific campaign from McAfee Mvision Insights based on the Campaign ID you have specified.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1636720886,
-          "collection": "/api/3/workflow_collections/d4d65125-54f6-4d88-baaa-c0ec979d2eaa",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/9a0271b2-a47a-4d8a-b043-e1e07edca455",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Get Campaign Details",
-              "description": null,
-              "arguments": {
-                "name": "McAfee Mvision Insights",
-                "config": "",
-                "params": {
-                  "id": "00a10ad2-ad7b-11ea-9477-02d538d9640e",
-                  "include": "Prevalence"
-                },
-                "version": "1.0.0",
-                "connector": "mcafee-mvision-insights",
-                "operation": "get_campaign_details",
-                "operationTitle": "Get Campaign Details",
-                "pickFromTenant": false,
-                "step_variables": []
-              },
-              "status": null,
-              "top": "165",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "uuid": "89cb5e76-176a-43b3-bb8b-507b0825124c",
-              "id": 6778
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "49f78911-a3dc-4115-a045-fb9447c427a5",
-                "title": "McAfee Mvision Insights: Get Campaign Details",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "params": [],
-                    "records": "{{vars.input.records}}"
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "30",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "uuid": "9a0271b2-a47a-4d8a-b043-e1e07edca455",
-              "id": 6779
-            }
-          ],
-          "routes": [
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start -> Get Campaign Details",
-              "targetStep": "/api/3/workflow_steps/89cb5e76-176a-43b3-bb8b-507b0825124c",
-              "sourceStep": "/api/3/workflow_steps/9a0271b2-a47a-4d8a-b043-e1e07edca455",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "99fcfc19-8c6e-4ee1-b9d4-5de5791fa2b9"
-            }
-          ],
-          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-          "uuid": "7e7f2328-076d-4461-977d-8b2d499c8d1d",
-          "recordTags": [
-            "McAfee",
-            "mcafee-mvision-insights"
-          ],
-          "id": 1481,
-          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "createDate": 1651846409,
-          "modifyUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "modifyDate": 1651846409,
-          "owners": [],
-          "isPrivate": false
-        },
-        {
-          "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get Artefacts",
-          "aliasName": null,
-          "tag": "#mcafee-mvision-insights",
-          "description": "Retrieves information about a specific artefacts from McAfee Mvision Insights based on the Hash type and Hash value you have specified.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": 1636720653,
-          "collection": "/api/3/workflow_collections/d4d65125-54f6-4d88-baaa-c0ec979d2eaa",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/a3b5ec89-93f4-4b6c-884a-0de120166d9d",
-          "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "b798d227-3364-4da0-839b-ad662d07c350",
+                "route": "235454c4-ecbb-4a10-a220-c3e5af4b7322",
                 "title": "McAfee Mvision Insights: Get Artefacts",
                 "resources": [
                   "alerts"
@@ -842,8 +387,467 @@
               "top": "30",
               "left": "125",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "uuid": "a3b5ec89-93f4-4b6c-884a-0de120166d9d",
-              "id": 6780
+              "uuid": "cdb3a25b-8390-4947-8fe7-2cf4236d5022",
+              "id": 64851
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Artefacts",
+              "targetStep": "/api/3/workflow_steps/21697657-9618-4d3e-8216-e108f3fc764c",
+              "sourceStep": "/api/3/workflow_steps/cdb3a25b-8390-4947-8fe7-2cf4236d5022",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "5d76726a-962c-4a6d-8d5e-54617804ab30"
+            }
+          ],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "0fc304d4-62d9-408d-9b82-4954f21aa6a0",
+          "recordTags": [
+            "McAfee",
+            "mcafee-mvision-insights"
+          ],
+          "id": 20116,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1653302436,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1653302436,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get IOC Details",
+          "aliasName": null,
+          "tag": "#mcafee-mvision-insights",
+          "description": "Retrieves information about a specific IOC from McAfee Mvision Insights based on the IOC ID you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1653302436,
+          "collection": "/api/3/workflow_collections/a1ae7c13-be5d-44bc-975a-6fa3384a1603",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/72a3f6a9-1649-4e39-a1c9-f580935fb570",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "c66cdc93-10ff-486b-8726-d3dcfd72f3c8",
+                "title": "McAfee Mvision Insights: Get IOC Details",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "72a3f6a9-1649-4e39-a1c9-f580935fb570",
+              "id": 64854
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get IOC Details",
+              "description": null,
+              "arguments": {
+                "name": "McAfee Mvision Insights",
+                "config": "d94ff3ba-0ce9-4dbc-9168-2f4e62589cc3",
+                "params": {
+                  "id": "00002945-edb8-11ea-9477-02d538d9640e",
+                  "fields": ""
+                },
+                "version": "1.1.0",
+                "connector": "mcafee-mvision-insights",
+                "operation": "get_ioc_details",
+                "operationTitle": "Get IOC Details",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "f4b4d02b-a413-45c9-9dc4-44cdb29124dd",
+              "id": 64853
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get IOC Details",
+              "targetStep": "/api/3/workflow_steps/f4b4d02b-a413-45c9-9dc4-44cdb29124dd",
+              "sourceStep": "/api/3/workflow_steps/72a3f6a9-1649-4e39-a1c9-f580935fb570",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "4b6ccb31-7d04-47c6-a09d-a847809671c1"
+            }
+          ],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "28dcbb0b-1873-4cf7-b4a4-bb2fa435d8d3",
+          "recordTags": [
+            "Mcafee",
+            "mcafee-mvision-insights"
+          ],
+          "id": 20117,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1653302436,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1653302436,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get IOC Campaigns",
+          "aliasName": null,
+          "tag": "#mcafee-mvision-insights",
+          "description": "Retrieves a list of all campaigns for an specific IOC from McAfee Mvision Insights based on the IOC ID you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1653302436,
+          "collection": "/api/3/workflow_collections/a1ae7c13-be5d-44bc-975a-6fa3384a1603",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/27530632-c244-4371-bd4a-615dad33bafb",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "838bc964-1d6e-4a90-8e55-c773a5816631",
+                "title": "McAfee Mvision Insights: Get IOC Campaigns",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "27530632-c244-4371-bd4a-615dad33bafb",
+              "id": 64856
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get IOC Campaigns",
+              "description": null,
+              "arguments": {
+                "name": "McAfee Mvision Insights",
+                "config": "d94ff3ba-0ce9-4dbc-9168-2f4e62589cc3",
+                "params": {
+                  "id": "00002945-edb8-11ea-9477-02d538d9640e"
+                },
+                "version": "1.1.0",
+                "connector": "mcafee-mvision-insights",
+                "operation": "get_ioc_campaigns",
+                "operationTitle": "Get IOC Campaigns",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "d45451ec-9f12-417d-a306-5a83b987c322",
+              "id": 64855
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get IOC Campaigns",
+              "targetStep": "/api/3/workflow_steps/d45451ec-9f12-417d-a306-5a83b987c322",
+              "sourceStep": "/api/3/workflow_steps/27530632-c244-4371-bd4a-615dad33bafb",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "a1999493-cb2b-4547-a7bf-50076cb780f6"
+            }
+          ],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "368feefb-3c0d-4a94-9495-f680f462df8a",
+          "recordTags": [
+            "McAfee",
+            "mcafee-mvision-insights"
+          ],
+          "id": 20118,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1653302436,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1653302436,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Campaign Relationship IOCs",
+          "aliasName": null,
+          "tag": "#mcafee-mvision-insights",
+          "description": "Retrieves a relationship campaigns for an IOCs from McAfee Mvision Insights based on the Campaign ID you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1653302436,
+          "collection": "/api/3/workflow_collections/a1ae7c13-be5d-44bc-975a-6fa3384a1603",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/b157cf85-d2c2-4c68-a944-e9b88b737215",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Campaign Relationship IOCs",
+              "description": null,
+              "arguments": {
+                "name": "McAfee Mvision Insights",
+                "config": "d94ff3ba-0ce9-4dbc-9168-2f4e62589cc3",
+                "params": {
+                  "id": "00a10ad2-ad7b-11ea-9477-02d538d9640e"
+                },
+                "version": "1.1.0",
+                "connector": "mcafee-mvision-insights",
+                "operation": "get_campaigns_relationship_iocs",
+                "operationTitle": "Get Campaign Relationship IOCs",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "a3053e20-fec9-4f29-a27b-0ad8ea808584",
+              "id": 64857
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "62ef191c-2be0-411c-868b-4c83707dfa27",
+                "title": "McAfee Mvision Insights: Get Campaign Relationship IOCs",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "b157cf85-d2c2-4c68-a944-e9b88b737215",
+              "id": 64858
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Campaign Relationship IOCs",
+              "targetStep": "/api/3/workflow_steps/a3053e20-fec9-4f29-a27b-0ad8ea808584",
+              "sourceStep": "/api/3/workflow_steps/b157cf85-d2c2-4c68-a944-e9b88b737215",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "4fbf1503-5037-4f8c-98ab-9a03e27f4a7e"
+            }
+          ],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "52d6cc93-0e45-45a6-87a1-61fede9719e6",
+          "recordTags": [
+            "McAfee",
+            "mcafee-mvision-insights"
+          ],
+          "id": 20119,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1653302436,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1653302436,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Campaign Details",
+          "aliasName": null,
+          "tag": "#mcafee-mvision-insights",
+          "description": "Retrieves information about a specific campaign from McAfee Mvision Insights based on the Campaign ID you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1653302436,
+          "collection": "/api/3/workflow_collections/a1ae7c13-be5d-44bc-975a-6fa3384a1603",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/60f1f85d-34ac-4640-bce0-a2233f0f7dc3",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "19a72a6c-899b-446b-9a67-06aaf922b0bc",
+                "title": "McAfee Mvision Insights: Get Campaign Details",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "60f1f85d-34ac-4640-bce0-a2233f0f7dc3",
+              "id": 64860
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Campaign Details",
+              "description": null,
+              "arguments": {
+                "name": "McAfee Mvision Insights",
+                "config": "d94ff3ba-0ce9-4dbc-9168-2f4e62589cc3",
+                "params": {
+                  "id": "00a10ad2-ad7b-11ea-9477-02d538d9640e",
+                  "fields": "",
+                  "include": "Prevalence"
+                },
+                "version": "1.1.0",
+                "connector": "mcafee-mvision-insights",
+                "operation": "get_campaign_details",
+                "operationTitle": "Get Campaign Details",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "6e269f4a-73f2-4a0d-9a65-c9eac1134a07",
+              "id": 64859
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Get Campaign Details",
+              "targetStep": "/api/3/workflow_steps/6e269f4a-73f2-4a0d-9a65-c9eac1134a07",
+              "sourceStep": "/api/3/workflow_steps/60f1f85d-34ac-4640-bce0-a2233f0f7dc3",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "ff988596-ad85-41fd-8e73-1bac8e222516"
+            }
+          ],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "7e7f2328-076d-4461-977d-8b2d499c8d1d",
+          "recordTags": [
+            "McAfee",
+            "mcafee-mvision-insights"
+          ],
+          "id": 20120,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1653302436,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1653302436,
+          "owners": [],
+          "isPrivate": false
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Artefacts",
+          "aliasName": null,
+          "tag": "#mcafee-mvision-insights",
+          "description": "Retrieves information about a specific artefacts from McAfee Mvision Insights based on the Hash type and Hash value you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1653302436,
+          "collection": "/api/3/workflow_collections/a1ae7c13-be5d-44bc-975a-6fa3384a1603",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/38393c87-fe22-422c-8401-99275d197ca4",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "d4c3bb69-8c3d-450b-b6ec-0919594714be",
+                "title": "McAfee Mvision Insights: Get Artefacts",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "uuid": "38393c87-fe22-422c-8401-99275d197ca4",
+              "id": 64862
             },
             {
               "@type": "WorkflowStep",
@@ -851,12 +855,12 @@
               "description": null,
               "arguments": {
                 "name": "McAfee Mvision Insights",
-                "config": "",
+                "config": "d94ff3ba-0ce9-4dbc-9168-2f4e62589cc3",
                 "params": {
                   "hashtype": "sha256",
                   "hashvalue": "3f367e20a6e35cb6be91cd5c9c800a902d526f27567cdd406e8fa2165dab936e"
                 },
-                "version": "1.0.0",
+                "version": "1.1.0",
                 "connector": "mcafee-mvision-insights",
                 "operation": "get_artefacts",
                 "operationTitle": "Get Artefacts",
@@ -867,19 +871,19 @@
               "top": "165",
               "left": "125",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "uuid": "ca15452c-f030-48c9-8ed5-b062e65b2458",
-              "id": 6781
+              "uuid": "6b487d8c-e20d-446b-b889-bd1be192ea00",
+              "id": 64861
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
               "name": "Start -> Get Artefacts",
-              "targetStep": "/api/3/workflow_steps/ca15452c-f030-48c9-8ed5-b062e65b2458",
-              "sourceStep": "/api/3/workflow_steps/a3b5ec89-93f4-4b6c-884a-0de120166d9d",
+              "targetStep": "/api/3/workflow_steps/6b487d8c-e20d-446b-b889-bd1be192ea00",
+              "sourceStep": "/api/3/workflow_steps/38393c87-fe22-422c-8401-99275d197ca4",
               "label": null,
               "isExecuted": false,
-              "uuid": "ed2ec56b-b75e-4bb8-9e7e-3dfc2d2e5d53"
+              "uuid": "bb4f3279-4a50-40e2-ac59-a80dc7f1d40c"
             }
           ],
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
@@ -888,11 +892,11 @@
             "McAfee",
             "mcafee-mvision-insights"
           ],
-          "id": 1482,
-          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "createDate": 1651846409,
-          "modifyUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "modifyDate": 1651846409,
+          "id": 20121,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1653302436,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1653302436,
           "owners": [],
           "isPrivate": false
         },
@@ -909,17 +913,47 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1636720750,
-          "collection": "/api/3/workflow_collections/d4d65125-54f6-4d88-baaa-c0ec979d2eaa",
+          "lastModifyDate": 1653302436,
+          "collection": "/api/3/workflow_collections/a1ae7c13-be5d-44bc-975a-6fa3384a1603",
           "versions": [],
-          "triggerStep": "/api/3/workflow_steps/9748bc95-90f2-4496-8263-24e2d304871d",
+          "triggerStep": "/api/3/workflow_steps/c7e72be5-f16c-4b90-bee6-a64ae388b3ab",
           "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get All Campaigns List",
+              "description": null,
+              "arguments": {
+                "name": "McAfee Mvision Insights",
+                "config": "d94ff3ba-0ce9-4dbc-9168-2f4e62589cc3",
+                "params": {
+                  "limit": 10,
+                  "fields": "",
+                  "offset": 0,
+                  "sector": "",
+                  "include": "",
+                  "filter_by": "",
+                  "campaign_name": ""
+                },
+                "version": "1.1.0",
+                "connector": "mcafee-mvision-insights",
+                "operation": "get_campaigns_list",
+                "operationTitle": "Get All Campaigns List",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "160",
+              "left": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "3126b06f-ba69-47c7-832e-b3aa7ceeef53",
+              "id": 64864
+            },
             {
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "arguments": {
-                "route": "6e7e23c8-82a1-4014-929e-7a95898211c5",
+                "route": "ae9867b6-f4a6-4967-a4fd-8503229c3a75",
                 "title": "McAfee Mvision Insights: Get All Campaigns List",
                 "resources": [
                   "alerts"
@@ -939,48 +973,19 @@
               "top": "30",
               "left": "125",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "uuid": "9748bc95-90f2-4496-8263-24e2d304871d",
-              "id": 6782
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Get All Campaigns List",
-              "description": null,
-              "arguments": {
-                "name": "McAfee Mvision Insights",
-                "config": "",
-                "params": {
-                  "limit": 10,
-                  "offset": 0,
-                  "sector": "",
-                  "include": "",
-                  "filter_by": "",
-                  "campaign_name": ""
-                },
-                "version": "1.0.0",
-                "connector": "mcafee-mvision-insights",
-                "operation": "get_campaigns_list",
-                "operationTitle": "Get All Campaigns List",
-                "pickFromTenant": false,
-                "step_variables": []
-              },
-              "status": null,
-              "top": "165",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "uuid": "993f6659-4759-4687-a9eb-e66a08300de9",
-              "id": 6783
+              "uuid": "c7e72be5-f16c-4b90-bee6-a64ae388b3ab",
+              "id": 64863
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
               "name": "Start -> Get All Campaigns List",
-              "targetStep": "/api/3/workflow_steps/993f6659-4759-4687-a9eb-e66a08300de9",
-              "sourceStep": "/api/3/workflow_steps/9748bc95-90f2-4496-8263-24e2d304871d",
+              "targetStep": "/api/3/workflow_steps/3126b06f-ba69-47c7-832e-b3aa7ceeef53",
+              "sourceStep": "/api/3/workflow_steps/c7e72be5-f16c-4b90-bee6-a64ae388b3ab",
               "label": null,
               "isExecuted": false,
-              "uuid": "8a2c7cc1-604c-41ea-b0b2-98ac571e2f49"
+              "uuid": "5f9beb56-6711-45b6-abdf-a815318e47ba"
             }
           ],
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
@@ -989,11 +994,11 @@
             "McAfee",
             "mcafee-mvision-insights"
           ],
-          "id": 1483,
-          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "createDate": 1651846409,
-          "modifyUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "modifyDate": 1651846409,
+          "id": 20122,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1653302436,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1653302436,
           "owners": [],
           "isPrivate": false
         },
@@ -1010,10 +1015,10 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1636721410,
-          "collection": "/api/3/workflow_collections/d4d65125-54f6-4d88-baaa-c0ec979d2eaa",
+          "lastModifyDate": 1653302436,
+          "collection": "/api/3/workflow_collections/a1ae7c13-be5d-44bc-975a-6fa3384a1603",
           "versions": [],
-          "triggerStep": "/api/3/workflow_steps/ef3b2a61-4691-48ce-9131-6907750d3f73",
+          "triggerStep": "/api/3/workflow_steps/8fc6657d-6ed3-4b06-92c7-aeb23a0dbc29",
           "steps": [
             {
               "@type": "WorkflowStep",
@@ -1021,11 +1026,11 @@
               "description": null,
               "arguments": {
                 "name": "McAfee Mvision Insights",
-                "config": "",
+                "config": "d94ff3ba-0ce9-4dbc-9168-2f4e62589cc3",
                 "params": {
                   "id": "00a10ad2-ad7b-11ea-9477-02d538d9640e"
                 },
-                "version": "1.0.0",
+                "version": "1.1.0",
                 "connector": "mcafee-mvision-insights",
                 "operation": "get_campaigns_relationship_galaxies",
                 "operationTitle": "Get Campaign Relationship Galaxies",
@@ -1036,15 +1041,15 @@
               "top": "165",
               "left": "125",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "uuid": "20898aa4-123a-4c00-9986-64a98415c1c0",
-              "id": 6784
+              "uuid": "3083a737-6650-49be-9fda-65f916d52dcc",
+              "id": 64865
             },
             {
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "arguments": {
-                "route": "d2a61b1d-af2d-40b6-9a3c-e4a6a73793c4",
+                "route": "47201ebf-e985-4b62-85bd-be3f0ae4f758",
                 "title": "McAfee Mvision Insights: Get Campaign Relationship Galaxies",
                 "resources": [
                   "alerts"
@@ -1064,19 +1069,19 @@
               "top": "30",
               "left": "125",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "uuid": "ef3b2a61-4691-48ce-9131-6907750d3f73",
-              "id": 6785
+              "uuid": "8fc6657d-6ed3-4b06-92c7-aeb23a0dbc29",
+              "id": 64866
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
               "name": "Start -> Get Campaign Relationship Galaxies",
-              "targetStep": "/api/3/workflow_steps/20898aa4-123a-4c00-9986-64a98415c1c0",
-              "sourceStep": "/api/3/workflow_steps/ef3b2a61-4691-48ce-9131-6907750d3f73",
+              "targetStep": "/api/3/workflow_steps/3083a737-6650-49be-9fda-65f916d52dcc",
+              "sourceStep": "/api/3/workflow_steps/8fc6657d-6ed3-4b06-92c7-aeb23a0dbc29",
               "label": null,
               "isExecuted": false,
-              "uuid": "77bb9e96-b606-4363-abe7-2d60434fdba2"
+              "uuid": "ae8d8ab0-c834-448c-bd2f-c0c3b8214993"
             }
           ],
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
@@ -1085,11 +1090,11 @@
             "McAfee",
             "mcafee-mvision-insights"
           ],
-          "id": 1484,
-          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "createDate": 1651846409,
-          "modifyUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "modifyDate": 1651846409,
+          "id": 20123,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1653302436,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1653302436,
           "owners": [],
           "isPrivate": false
         },
@@ -1106,10 +1111,10 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1651846580,
-          "collection": "/api/3/workflow_collections/d4d65125-54f6-4d88-baaa-c0ec979d2eaa",
+          "lastModifyDate": 1653302436,
+          "collection": "/api/3/workflow_collections/a1ae7c13-be5d-44bc-975a-6fa3384a1603",
           "versions": [],
-          "triggerStep": "/api/3/workflow_steps/76862118-3b7a-4af7-bd2b-52f0011c0207",
+          "triggerStep": "/api/3/workflow_steps/b8925c40-ef78-4580-bfb2-68a0d622184b",
           "steps": [
             {
               "@type": "WorkflowStep",
@@ -1140,15 +1145,15 @@
               "top": "165",
               "left": "125",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "uuid": "8b8d3903-12ae-4689-a976-9aff549984dc",
-              "id": 6794
+              "uuid": "401e2570-39dc-49fe-8b08-86abc44fb6b7",
+              "id": 64867
             },
             {
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "arguments": {
-                "route": "ac8490a1-fc2e-47d8-a0f5-3bc975e7ddab",
+                "route": "958e8aa1-bad3-4337-89ce-5eb331f2869d",
                 "title": "McAfee Mvision Insights: Get All Events List",
                 "resources": [
                   "alerts"
@@ -1168,19 +1173,19 @@
               "top": "30",
               "left": "125",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "uuid": "76862118-3b7a-4af7-bd2b-52f0011c0207",
-              "id": 6795
+              "uuid": "b8925c40-ef78-4580-bfb2-68a0d622184b",
+              "id": 64868
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
               "name": "Start -> Get All Events List",
-              "targetStep": "/api/3/workflow_steps/8b8d3903-12ae-4689-a976-9aff549984dc",
-              "sourceStep": "/api/3/workflow_steps/76862118-3b7a-4af7-bd2b-52f0011c0207",
+              "targetStep": "/api/3/workflow_steps/401e2570-39dc-49fe-8b08-86abc44fb6b7",
+              "sourceStep": "/api/3/workflow_steps/b8925c40-ef78-4580-bfb2-68a0d622184b",
               "label": null,
               "isExecuted": false,
-              "uuid": "741b5dd8-54d7-4dd9-98fb-a0ad1878ad78"
+              "uuid": "42cca40f-bbfc-4acc-bf60-aa83a3ba641e"
             }
           ],
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
@@ -1189,11 +1194,11 @@
             "McAfee",
             "mcafee-mvision-insights"
           ],
-          "id": 1489,
+          "id": 20124,
           "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "createDate": 1651846504,
+          "createDate": 1653302436,
           "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
-          "modifyDate": 1651846581,
+          "modifyDate": 1653302436,
           "owners": [],
           "isPrivate": false
         },
@@ -1210,10 +1215,10 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1636721636,
-          "collection": "/api/3/workflow_collections/d4d65125-54f6-4d88-baaa-c0ec979d2eaa",
+          "lastModifyDate": 1653302436,
+          "collection": "/api/3/workflow_collections/a1ae7c13-be5d-44bc-975a-6fa3384a1603",
           "versions": [],
-          "triggerStep": "/api/3/workflow_steps/a447c91e-518f-47bc-b0c0-6efa87deee05",
+          "triggerStep": "/api/3/workflow_steps/b503ec46-2213-4bc9-897b-0f0bf00c90ba",
           "steps": [
             {
               "@type": "WorkflowStep",
@@ -1221,10 +1226,11 @@
               "description": null,
               "arguments": {
                 "name": "McAfee Mvision Insights",
-                "config": "",
+                "config": "d94ff3ba-0ce9-4dbc-9168-2f4e62589cc3",
                 "params": {
                   "id": "",
                   "limit": 10,
+                  "fields": "",
                   "offset": 0,
                   "to_time": "",
                   "from_date": "",
@@ -1232,7 +1238,7 @@
                   "artefact_type": "",
                   "artefact_value": ""
                 },
-                "version": "1.0.0",
+                "version": "1.1.0",
                 "connector": "mcafee-mvision-insights",
                 "operation": "get_events_list",
                 "operationTitle": "Get All Events List",
@@ -1240,18 +1246,18 @@
                 "step_variables": []
               },
               "status": null,
-              "top": "165",
-              "left": "125",
+              "top": "160",
+              "left": "120",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "uuid": "7b0ab100-6b9b-485f-b305-1ac5c2719a7b",
-              "id": 6786
+              "uuid": "797dc12a-d8d8-4dd0-be65-1c452a001580",
+              "id": 64870
             },
             {
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "arguments": {
-                "route": "86ec2fbc-ba5f-4d64-a21b-e8294f22fa6a",
+                "route": "73416208-6009-4c99-94a1-c3011b640596",
                 "title": "McAfee Mvision Insights: Get All Events List",
                 "resources": [
                   "alerts"
@@ -1271,19 +1277,19 @@
               "top": "30",
               "left": "125",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "uuid": "a447c91e-518f-47bc-b0c0-6efa87deee05",
-              "id": 6787
+              "uuid": "b503ec46-2213-4bc9-897b-0f0bf00c90ba",
+              "id": 64869
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
               "name": "Start -> Get All Events List",
-              "targetStep": "/api/3/workflow_steps/7b0ab100-6b9b-485f-b305-1ac5c2719a7b",
-              "sourceStep": "/api/3/workflow_steps/a447c91e-518f-47bc-b0c0-6efa87deee05",
+              "targetStep": "/api/3/workflow_steps/797dc12a-d8d8-4dd0-be65-1c452a001580",
+              "sourceStep": "/api/3/workflow_steps/b503ec46-2213-4bc9-897b-0f0bf00c90ba",
               "label": null,
               "isExecuted": false,
-              "uuid": "e9e28496-79e5-4f77-a2f0-73b0abe802fd"
+              "uuid": "24d1a157-1e91-4158-9eaf-dce054890112"
             }
           ],
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
@@ -1292,11 +1298,11 @@
             "McAfee",
             "mcafee-mvision-insights"
           ],
-          "id": 1485,
-          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "createDate": 1651846409,
-          "modifyUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "modifyDate": 1651846409,
+          "id": 20125,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1653302436,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1653302436,
           "owners": [],
           "isPrivate": false
         },
@@ -1313,17 +1319,41 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1636624368,
-          "collection": "/api/3/workflow_collections/d4d65125-54f6-4d88-baaa-c0ec979d2eaa",
+          "lastModifyDate": 1653302436,
+          "collection": "/api/3/workflow_collections/a1ae7c13-be5d-44bc-975a-6fa3384a1603",
           "versions": [],
-          "triggerStep": "/api/3/workflow_steps/10aa13b8-070c-42bf-bad0-007a0d2071c3",
+          "triggerStep": "/api/3/workflow_steps/9cef48a1-bf5f-41ad-9c90-9d029c7a85e1",
           "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get IOC Relationship Campaigns",
+              "description": null,
+              "arguments": {
+                "name": "McAfee Mvision Insights",
+                "config": "d94ff3ba-0ce9-4dbc-9168-2f4e62589cc3",
+                "params": {
+                  "id": "00002945-edb8-11ea-9477-02d538d9640e"
+                },
+                "version": "1.1.0",
+                "connector": "mcafee-mvision-insights",
+                "operation": "get_ioc_relationship_campaigns",
+                "operationTitle": "Get IOC Relationship Campaigns",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "7155254a-f6f2-4e23-a94f-47bc97fc78d3",
+              "id": 64871
+            },
             {
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "arguments": {
-                "route": "e8fcf4cd-e06f-4afe-a719-41c08461bbfc",
+                "route": "cb3dff06-8a2d-4922-b7ca-1c786dd5f7ed",
                 "title": "McAfee Mvision Insights: Get IOC Relationship Campaigns",
                 "resources": [
                   "alerts"
@@ -1343,43 +1373,19 @@
               "top": "30",
               "left": "125",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "uuid": "10aa13b8-070c-42bf-bad0-007a0d2071c3",
-              "id": 6788
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Get IOC Relationship Campaigns",
-              "description": null,
-              "arguments": {
-                "name": "McAfee Mvision Insights",
-                "config": "",
-                "params": {
-                  "id": "00002945-edb8-11ea-9477-02d538d9640e"
-                },
-                "version": "1.0.0",
-                "connector": "mcafee-mvision-insights",
-                "operation": "get_ioc_relationship_campaigns",
-                "operationTitle": "Get IOC Relationship Campaigns",
-                "pickFromTenant": false,
-                "step_variables": []
-              },
-              "status": null,
-              "top": "165",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "uuid": "a45ea9de-ba5a-44d6-bdfd-fad7d999d6ec",
-              "id": 6789
+              "uuid": "9cef48a1-bf5f-41ad-9c90-9d029c7a85e1",
+              "id": 64872
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
               "name": "Start -> Get IOC Relationship Campaigns",
-              "targetStep": "/api/3/workflow_steps/a45ea9de-ba5a-44d6-bdfd-fad7d999d6ec",
-              "sourceStep": "/api/3/workflow_steps/10aa13b8-070c-42bf-bad0-007a0d2071c3",
+              "targetStep": "/api/3/workflow_steps/7155254a-f6f2-4e23-a94f-47bc97fc78d3",
+              "sourceStep": "/api/3/workflow_steps/9cef48a1-bf5f-41ad-9c90-9d029c7a85e1",
               "label": null,
               "isExecuted": false,
-              "uuid": "0d18572a-c2f3-4ae9-abed-4f5627526eac"
+              "uuid": "45beebb6-c267-43ba-8e18-204b7f87494e"
             }
           ],
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
@@ -1388,11 +1394,11 @@
             "McAfee",
             "mcafee-mvision-insights"
           ],
-          "id": 1486,
-          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "createDate": 1651846409,
-          "modifyUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "modifyDate": 1651846409,
+          "id": 20126,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1653302436,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1653302436,
           "owners": [],
           "isPrivate": false
         },
@@ -1409,44 +1415,17 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1636724236,
-          "collection": "/api/3/workflow_collections/d4d65125-54f6-4d88-baaa-c0ec979d2eaa",
+          "lastModifyDate": 1653302436,
+          "collection": "/api/3/workflow_collections/a1ae7c13-be5d-44bc-975a-6fa3384a1603",
           "versions": [],
-          "triggerStep": "/api/3/workflow_steps/c9e2c6fc-b192-4b0a-9fef-1766a4cc463e",
+          "triggerStep": "/api/3/workflow_steps/de7f88ea-e0f9-4c54-8e65-b979336bc4b7",
           "steps": [
-            {
-              "@type": "WorkflowStep",
-              "name": "Get All Galaxies List",
-              "description": null,
-              "arguments": {
-                "name": "McAfee Mvision Insights",
-                "config": "",
-                "params": {
-                  "id": "",
-                  "limit": 10,
-                  "offset": 0,
-                  "category": "MITRE Tool"
-                },
-                "version": "1.0.0",
-                "connector": "mcafee-mvision-insights",
-                "operation": "get_galaxies_list",
-                "operationTitle": "Get All Galaxies List",
-                "pickFromTenant": false,
-                "step_variables": []
-              },
-              "status": null,
-              "top": "165",
-              "left": "125",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "uuid": "34f76ae3-9c51-4ec1-bda7-5dddf60cdc67",
-              "id": 6790
-            },
             {
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "arguments": {
-                "route": "ae1de28f-fb21-4a4c-854d-4361e429c2df",
+                "route": "c013412e-d6c2-41f2-bf45-87437f79ef71",
                 "title": "McAfee Mvision Insights: Get All Galaxies List",
                 "resources": [
                   "alerts"
@@ -1466,19 +1445,47 @@
               "top": "30",
               "left": "125",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "uuid": "c9e2c6fc-b192-4b0a-9fef-1766a4cc463e",
-              "id": 6791
+              "uuid": "de7f88ea-e0f9-4c54-8e65-b979336bc4b7",
+              "id": 64873
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get All Galaxies List",
+              "description": null,
+              "arguments": {
+                "name": "McAfee Mvision Insights",
+                "config": "d94ff3ba-0ce9-4dbc-9168-2f4e62589cc3",
+                "params": {
+                  "id": "",
+                  "limit": 10,
+                  "fields": "",
+                  "offset": 0,
+                  "category": "MITRE Tool"
+                },
+                "version": "1.1.0",
+                "connector": "mcafee-mvision-insights",
+                "operation": "get_galaxies_list",
+                "operationTitle": "Get All Galaxies List",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "165",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "uuid": "e473d7c0-103e-44b9-a18a-24095ed8eb9f",
+              "id": 64874
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
               "name": "Start -> Get All Galaxies List",
-              "targetStep": "/api/3/workflow_steps/34f76ae3-9c51-4ec1-bda7-5dddf60cdc67",
-              "sourceStep": "/api/3/workflow_steps/c9e2c6fc-b192-4b0a-9fef-1766a4cc463e",
+              "targetStep": "/api/3/workflow_steps/e473d7c0-103e-44b9-a18a-24095ed8eb9f",
+              "sourceStep": "/api/3/workflow_steps/de7f88ea-e0f9-4c54-8e65-b979336bc4b7",
               "label": null,
               "isExecuted": false,
-              "uuid": "4359056c-0e5f-46dc-ad83-59066d5b866d"
+              "uuid": "1852049a-5e98-432a-a1bf-7060a6c9a099"
             }
           ],
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
@@ -1487,11 +1494,11 @@
             "McAfee",
             "mcafee-mvision-insights"
           ],
-          "id": 1487,
-          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "createDate": 1651846409,
-          "modifyUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "modifyDate": 1651846409,
+          "id": 20127,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1653302436,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1653302436,
           "owners": [],
           "isPrivate": false
         },
@@ -1508,17 +1515,17 @@
           "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "lastModifyDate": 1636721248,
-          "collection": "/api/3/workflow_collections/d4d65125-54f6-4d88-baaa-c0ec979d2eaa",
+          "lastModifyDate": 1653302436,
+          "collection": "/api/3/workflow_collections/a1ae7c13-be5d-44bc-975a-6fa3384a1603",
           "versions": [],
-          "triggerStep": "/api/3/workflow_steps/5b755390-be02-4226-b642-daadb39d0252",
+          "triggerStep": "/api/3/workflow_steps/23876968-975e-43bd-886d-e031cddd0c6b",
           "steps": [
             {
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "arguments": {
-                "route": "d8dab893-323a-40d8-ba7d-ddd6c4c6446c",
+                "route": "48eaa47e-fbec-4c68-8547-e3d555673117",
                 "title": "McAfee Mvision Insights: Get Campaign Galaxies",
                 "resources": [
                   "alerts"
@@ -1538,8 +1545,8 @@
               "top": "30",
               "left": "125",
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "uuid": "5b755390-be02-4226-b642-daadb39d0252",
-              "id": 6792
+              "uuid": "23876968-975e-43bd-886d-e031cddd0c6b",
+              "id": 64875
             },
             {
               "@type": "WorkflowStep",
@@ -1547,11 +1554,11 @@
               "description": null,
               "arguments": {
                 "name": "McAfee Mvision Insights",
-                "config": "",
+                "config": "d94ff3ba-0ce9-4dbc-9168-2f4e62589cc3",
                 "params": {
                   "id": "00a10ad2-ad7b-11ea-9477-02d538d9640e"
                 },
-                "version": "1.0.0",
+                "version": "1.1.0",
                 "connector": "mcafee-mvision-insights",
                 "operation": "get_campaign_galaxies",
                 "operationTitle": "Get Campaign Galaxies",
@@ -1562,19 +1569,19 @@
               "top": "165",
               "left": "125",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "uuid": "6d87b8e9-f8f3-45ee-ba63-389a0d88c872",
-              "id": 6793
+              "uuid": "35da29d8-761e-48f4-bf06-96acedf2ce2e",
+              "id": 64876
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
               "name": "Start -> Get Campaign Galaxies",
-              "targetStep": "/api/3/workflow_steps/6d87b8e9-f8f3-45ee-ba63-389a0d88c872",
-              "sourceStep": "/api/3/workflow_steps/5b755390-be02-4226-b642-daadb39d0252",
+              "targetStep": "/api/3/workflow_steps/35da29d8-761e-48f4-bf06-96acedf2ce2e",
+              "sourceStep": "/api/3/workflow_steps/23876968-975e-43bd-886d-e031cddd0c6b",
               "label": null,
               "isExecuted": false,
-              "uuid": "ee2765db-a96b-4cdd-8270-e767ce229cdd"
+              "uuid": "8f8aafc5-a13d-4e3b-8f8f-8c3942df7ba3"
             }
           ],
           "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
@@ -1583,11 +1590,11 @@
             "McAfee",
             "mcafee-mvision-insights"
           ],
-          "id": 1488,
-          "createUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "createDate": 1651846409,
-          "modifyUser": "/api/3/appliances/57545210-2adc-472b-a24f-2df6ee8dfe63",
-          "modifyDate": 1651846409,
+          "id": 20128,
+          "createUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "createDate": 1653302436,
+          "modifyUser": "/api/3/people/3451141c-bac6-467c-8d72-85e0fab569ce",
+          "modifyDate": 1653302436,
           "owners": [],
           "isPrivate": false
         }
