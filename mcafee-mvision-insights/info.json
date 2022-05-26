@@ -9,7 +9,7 @@
   "category": "Threat Intelligence",
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/1.1.0/mcafee-mvision-insights/282/mcafee-mvision-insights-v1-1-0",
   "configuration": {
     "fields": [
       {
@@ -27,7 +27,7 @@
         "description": "The Client ID used to access the McAfee Mvision Insights server to which you will connect and perform the automated operations.",
         "type": "text",
         "name": "client_id",
-        "required": false,
+        "required": true,
         "editable": true,
         "visible": true
       },
@@ -36,7 +36,7 @@
         "description": "The Client Secret used to access the McAfee Mvision Insights server to which you will connect and perform the automated operations.",
         "type": "password",
         "name": "client_secret",
-        "required": false,
+        "required": true,
         "editable": true,
         "visible": true
       },
@@ -45,7 +45,7 @@
         "description": "The API Key used to access the McAfee Mvision Insights endpoint to which you will connect and perform the automated operations.",
         "type": "password",
         "name": "api_key",
-        "required": false,
+        "required": true,
         "editable": true,
         "visible": true
       },
@@ -1298,7 +1298,7 @@
     {
       "operation": "get_insights_events_list",
       "title": "Get Insights Events List",
-      "description": "Retrieves a list of all insight events indicating IoC local sighting",
+      "description": "Retrieves a list of all insight events indicating IoC local sighting or specific insight events from McAfee Mvision Insight based on the input parameters you have specified. ",
       "enabled": true,
       "category": "investigation",
       "annotation": "get_insights_events_list",
@@ -1310,7 +1310,8 @@
           "required": false,
           "visible": true,
           "editable": true,
-          "description": "Enter artifact type based on which filter insight events from Mcafee Server"
+          "tooltip": "The type of artifact whose associated insight events you want to retrieve",
+          "description": "The type of artifact whose associated insight events you want to retrieve from McAfee Mvision Insights."
         },
         {
           "title": "Artefact Value",
@@ -1319,7 +1320,8 @@
           "required": false,
           "visible": true,
           "editable": true,
-          "description": "Enter artifact value based on which filter insight events from Mcafee Server"
+          "tooltip": "The value of artifact whose associated insight events you want to retrieve",
+          "description": "The value of artifact whose associated insight events you want to retrieve from McAfee Mvision Insights."
         },
         {
           "title": "Agent GUID",
@@ -1328,7 +1330,7 @@
           "required": false,
           "visible": true,
           "editable": true,
-          "description": "Enter agent GUID value based on which filter insight events from Mcafee Server"
+          "description": "The GUID of the agent whose associated insight events you want to retrieve from McAfee Mvision Insights."
         },
         {
           "title": "Campaign ID",
@@ -1337,7 +1339,7 @@
           "required": false,
           "visible": true,
           "editable": true,
-          "description": "Enter campaign ID based on which filter insight events from Mcafee Server"
+          "description": "The ID of the campaign whose associated insight events you want to retrieve from McAfee Mvision Insights."
         },
         {
           "title": "From Date",
@@ -1346,7 +1348,7 @@
           "required": false,
           "visible": true,
           "editable": true,
-          "description": "Enter From date to filter result from that date"
+          "description": "The starting DateTime from when you want to retrieve insight events from McAfee Mvision Insights."
         },
         {
           "title": "To Date",
@@ -1355,7 +1357,7 @@
           "required": false,
           "visible": true,
           "editable": true,
-          "description": "Enter to date to filter result till that date"
+          "description": "The ending DateTime till when you want to retrieve insight events from McAfee Mvision Insights."
         },
         {
           "title": "Offset",
@@ -1365,7 +1367,7 @@
           "visible": true,
           "editable": true,
           "value": 0,
-          "description": "Index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records"
+          "description": "Index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records, say insight events starting from the 10th insight event. By default, this is set as 0."
         },
         {
           "title": "Limit",
@@ -1375,7 +1377,7 @@
           "visible": true,
           "editable": true,
           "value": 10,
-          "description": "The maximum number of results, that this operation should return."
+          "description": "The maximum number of results, that this operation should return. "
         }
       ],
       "output_schema": {
@@ -1407,7 +1409,7 @@
     {
       "operation": "get_related_samples",
       "title": "Get Related Samples",
-      "description": "Returns a list of samples related to provided sample, based on input parameters you have provided",
+      "description": "Returns a list of samples related to the specified sample from McAfee Mvision Insight based on the sample MD hash, static feature MD hash, static feature version, and other input parameters you have specified",
       "enabled": true,
       "category": "investigation",
       "annotation": "get_related_samples",
@@ -1419,8 +1421,8 @@
           "required": true,
           "visible": true,
           "editable": true,
-          "tooltip": "Hash of the sample",
-          "description": "Enter sample MD5 Hash value to get its related samples"
+          "tooltip": "The sample MD5 Hash value whose related samples you want to retrieve",
+          "description": "The sample MD5 Hash value whose related samples you want to retrieve from McAfee Mvision Insights."
         },
         {
           "title": "Static Feature MD5 Hash",
@@ -1429,19 +1431,19 @@
           "required": true,
           "visible": true,
           "editable": true,
-          "tooltip": "Hash of the static feature",
-          "description": "Enter Static Feature MD5 Hash value to get its related samples"
+          "tooltip": "The static feature MD5 Hash value whose related samples you want to retrieve",
+          "description": "The static feature MD5 Hash value whose related samples you want to retrieve from McAfee Mvision Insights. "
         },
         {
           "title": "Static Feature Version",
           "type": "integer",
-          "name": "ver",
+          "name": "version",
           "required": true,
           "visible": true,
           "editable": true,
           "value": 1,
-          "tooltip": "Version of the static feature",
-          "description": "Enter version of the static feature"
+          "tooltip": "The version of the static feature whose related samples you want to retrieve",
+          "description": "The version of the static feature whose related samples you want to retrieve from McAfee Mvision Insights."
         },
         {
           "title": "Days Since Last Seen",
@@ -1450,21 +1452,23 @@
           "required": false,
           "visible": true,
           "editable": true,
-          "tooltip": "Last seen in days, which will be considered to limit the lookup (minimum value: 1)",
-          "description": "Last seen in days, which will be considered to limit the lookup (minimum value: 1)"
+          "tooltip": "The days since the related samples were last seen in McAfee Mvision Insight, which is considered to limit the lookup (minimum value: 1). ",
+          "description": "The days since the related samples were last seen in McAfee Mvision Insights, which is considered to limit the lookup (minimum value: 1). "
         },
         {
           "title": "Offset",
+          "tooltip": "Index of the first item to be returned by this operation",
           "type": "integer",
           "name": "offset",
           "required": false,
           "visible": true,
           "editable": true,
           "value": 0,
-          "description": "Index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records"
+          "description": "Index of the first item to be returned by this operation. This parameter is useful if you want to get a subset of records."
         },
         {
           "title": "Limit",
+          "tooltip": "The maximum number of results, that this operation should return",
           "type": "integer",
           "name": "limit",
           "required": false,
@@ -1474,7 +1478,31 @@
           "description": "The maximum number of results, that this operation should return."
         }
       ],
-      "output_schema": ""
+      "output_schema": {
+        "links": {
+          "self": "",
+          "first": "",
+          "next": ""
+        },
+        "data": [
+          {
+            "type": "",
+            "id": "",
+            "attributes": {
+              "samplemd5": "",
+              "lastseen": ""
+            }
+          }
+        ],
+        "meta": {
+          "totalCount": "",
+          "remCount": "",
+          "firstSfvecmd5": {
+            "version": "",
+            "sfvecmd5": ""
+          }
+        }
+      }
     }
   ]
 }
